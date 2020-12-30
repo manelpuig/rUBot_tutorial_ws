@@ -1,0 +1,8 @@
+prefix=/home/mpuig/rubot_tutorial_ws/install
+
+Name: mouse_teleop
+Description: Description of mouse_teleop
+Version: 0.4.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

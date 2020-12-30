@@ -1,0 +1,8 @@
+prefix=/home/mpuig/rubot_tutorial_ws/install
+
+Name: ros_basics
+Description: Description of ros_basics
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

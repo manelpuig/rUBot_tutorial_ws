@@ -1,0 +1,8 @@
+prefix=/home/mpuig/rubot_tutorial_ws/install
+
+Name: rubot_control
+Description: Description of rubot_control
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,2 @@
+ros_basics:rubot_control:teleop_tools/joy_teleop:teleop_tools/key_teleop:teleop_tools/mouse_teleop:teleop_tools/teleop_tools:teleop_tools/teleop_tools_msgs:turtlesim_tutorial
+-DCATKIN_DEVEL_PREFIX=/home/mpuig/rubot_tutorial_ws/devel -DCMAKE_INSTALL_PREFIX=/home/mpuig/rubot_tutorial_ws/install -G Unix Makefiles
