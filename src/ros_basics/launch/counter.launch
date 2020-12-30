@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <node pkg="beginner_tutorials" type="Publisher_num.py" name="number_publisher"/>
+    <node pkg="beginner_tutorials" type="PubSub_counter.py" name="number_counter" output="screen"/>
+</launch>

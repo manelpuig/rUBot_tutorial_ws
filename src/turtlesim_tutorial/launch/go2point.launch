@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <node pkg="turtlesim" type="turtlesim_node" name="turtlesim_node"/>
+    <node pkg="turtlesim_tutorial" type="go2point.py" name="turtlebot_controller" output="screen" />
+</launch>
