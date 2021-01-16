@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<launch>
-    <arg name="v" default="0"/>
-    <arg name="w" default="0"/>
-    <param name="v" value="$(arg v)"/>
-    <param name="w" value="$(arg w)"/>
-    <node pkg="rubot_control" type="move_gopigo_param.py" name="rubot_control" output="screen" />
-</launch>

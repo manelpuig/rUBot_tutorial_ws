@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/mpuig/rubot_tutorial_ws/devel/lib;/home/mpuig/turtlebot3_pc_ws/devel/lib;/home/mpuig/rUBotCoop_LabProject/devel/lib;/home/mpuig/rUBotCoop_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/mpuig/rubot_tutorial_ws/devel/lib;/home/mpuig/rubot_tutorial_ws/devel/lib;/home/mpuig/turtlebot3_pc_ws/devel/lib;/home/mpuig/rUBotCoop_LabProject/devel/lib;/home/mpuig/rUBotCoop_ws/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

@@ -131,13 +131,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/mpuig/rubot_tutorial_ws/build/gtest/cmake_install.cmake")
-  include("/home/mpuig/rubot_tutorial_ws/build/teleop_tools/joy_teleop/cmake_install.cmake")
-  include("/home/mpuig/rubot_tutorial_ws/build/teleop_tools/key_teleop/cmake_install.cmake")
-  include("/home/mpuig/rubot_tutorial_ws/build/teleop_tools/mouse_teleop/cmake_install.cmake")
-  include("/home/mpuig/rubot_tutorial_ws/build/teleop_tools/teleop_tools/cmake_install.cmake")
-  include("/home/mpuig/rubot_tutorial_ws/build/teleop_tools/teleop_tools_msgs/cmake_install.cmake")
   include("/home/mpuig/rubot_tutorial_ws/build/ros_basics/cmake_install.cmake")
-  include("/home/mpuig/rubot_tutorial_ws/build/rubot_control/cmake_install.cmake")
   include("/home/mpuig/rubot_tutorial_ws/build/turtlesim_tutorial/cmake_install.cmake")
 
 endif()
