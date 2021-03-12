@@ -1,2 +1,0 @@
-ros_basics:turtlesim_tutorial
--DCATKIN_DEVEL_PREFIX=/home/mpuig/rubot_tutorial_ws/devel -DCMAKE_INSTALL_PREFIX=/home/mpuig/rubot_tutorial_ws/install -G Unix Makefiles
