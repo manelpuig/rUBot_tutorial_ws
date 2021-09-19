@@ -1,0 +1,13 @@
+Instructions:
+https://ubuntuhandbook.org/index.php/2019/01/install-nautilus-actions-ubuntu-18-04/
+https://yll0620.medium.com/useful-packages-tools-e9964127606f
+
+type:
+
+sudo add-apt-repository ppa:daniel-marynicz/filemanager-actions
+
+sudo apt-get update
+
+sudo apt install filemanager-actions-nautilus-extension
+
+fma-config-tool
