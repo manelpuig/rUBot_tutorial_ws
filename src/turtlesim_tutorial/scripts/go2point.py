@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import rospy
 from geometry_msgs.msg import Twist
 from turtlesim.msg import Pose
@@ -53,11 +53,11 @@ class TurtleBot:
         goal_pose = Pose()
 
         # Get the input from the user.
-        goal_pose.x = input("Set your x goal: ")
-        goal_pose.y = input("Set your y goal: ")
+        goal_pose.x = float(input("Set your x goal: "))
+        goal_pose.y = float(input("Set your y goal: "))
 
         # Please, insert a number slightly greater than 0 (e.g. 0.01).
-        distance_tolerance = input("Set your tolerance: ")
+        distance_tolerance = float(input("Set your tolerance: "))
 
         vel_msg = Twist()
 

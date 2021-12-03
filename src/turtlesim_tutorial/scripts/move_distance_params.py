@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import rospy
 from geometry_msgs.msg import Twist
 from turtlesim.msg import Pose
@@ -26,11 +26,10 @@ def move_turtle(lin_vel,ang_vel,distance):
         vel.angular.y = 0
         vel.angular.z = ang_vel
  
-	if(robot_x >= distance):
-		rospy.loginfo("Robot Reached destination")
-		rospy.logwarn("Stopping robot")
-
-		break
+        if(robot_x >= distance):
+            rospy.loginfo("Robot Reached destination")
+            rospy.logwarn("Stopping robot")
+            break
         pub.publish(vel)
         rate.sleep()
 

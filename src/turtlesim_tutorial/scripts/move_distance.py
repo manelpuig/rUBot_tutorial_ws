@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import rospy
 from geometry_msgs.msg import Twist
 from turtlesim.msg import Pose
@@ -19,19 +19,26 @@ def move_turtle(lin_vel,ang_vel,distance):
     rate = rospy.Rate(10) # 10hz
     vel = Twist()
     while not rospy.is_shutdown():
-	vel.linear.x = lin_vel
+        vel.linear.x = lin_vel
         vel.linear.y = 0
         vel.linear.z = 0
         vel.angular.x = 0
         vel.angular.y = 0
         vel.angular.z = ang_vel
-
-	if(robot_x >= distance):
-		rospy.loginfo("Robot Reached destination")
-		rospy.logwarn("Stopping robot")
-		break
-        pub.publish(vel)
-        rate.sleep()
+        
+        if robot_x >= distance:
+            rospy.loginfo("Robot Reached destination")
+            rospy.logwarn("Stopping robot")
+            vel.linear.x = 0
+            vel.angular.z = 0
+            pub.publish(vel)
+            #rospy.on_shutdown(myhook)
+            break
+        else:
+            pub.publish(vel)
+            rate.sleep()
+def myhook():
+    print ("shutdown time!")           
 
 if __name__ == '__main__':
     try:
