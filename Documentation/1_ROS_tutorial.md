@@ -67,3 +67,66 @@ rosrun turtlesim turtlesim_node
 ```
 ![](./Images/1_turtlesim1.png)
 
+"turtlesim_node" is a node responsible to spaw the turtle in the blue board
+
+![](./Images/2_turtlesim_node.png)
+
+To list the nodes and topics, type:
+```shell
+rosnode list
+rostopic list
+```
+![](./Images/1_turtlesim2.png)
+
+To see the information about the nodes, topics and messages, type:
+
+```shell
+rosnode info /turtlesim
+rostopic info /turtle1/cmd_vel
+rostopic info /turtle1/pose
+```
+In order to see the message structure, type:
+```shell
+rosmsg show geometry_msgs/Twist
+rosmsg show turtlesim/Pose 
+```
+![](./Images/1_turtlesim6.png)
+
+you can also find the message structure in google: http://docs.ros.org/melodic/api/geometry_msgs/html/msg/Twist.html
+
+In order to write a message to a topic we have different options:
+- we can publish directly to the topic: for exemple we publish a Twist type message with a rate of 1Hz to define a circle, type:
+
+```shell
+rostopic pub -r 1 /turtle1/cmd_vel geometry_msgs/Twist '[2, 0, 0]' '[0, 0, 2]'
+```
+
+![](./Images/1_turtlesim7.png)
+
+- or we can write a node to use the keyboard arrows to generate and publish the cmd_vel messages to the /cmd_vel topic:
+```shell
+rosrun turtlesim turtle_teleop_key
+```
+![](./Images/1_turtlesim3.png)
+
+"turtle_teleop_key" is another node responsible to comand and move the turtle.
+
+In order to listen a message from a topic:
+```shell
+rostopic echo /turtle1/pose
+rostopic echo /turtle1/cmd_vel
+```
+
+We can use "rqt_graph" and "rqt_plot" to se the nodes-topics structure and the message values
+
+```shell
+rqt_graph
+rqt_plot
+```
+
+![](./Images/1_turtlesim4.png)
+
+![](./Images/1_turtlesim8.png)
+
+## PC WorkSpace
+
