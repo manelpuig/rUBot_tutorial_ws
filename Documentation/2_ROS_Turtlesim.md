@@ -9,7 +9,9 @@ This tutorial has been extracted from the following references:
 - ROS course Edouard Renard: https://www.udemy.com/share/1022ucAEITeFhTRX4F/
 
 ## **Navigation control of Turtlesim**
-A specific node "/move_turtle" can be created to command the "/turtlesim" node.
+A specific package "turtlesim_tutorial" is created where different motion control programs will be done.
+
+Within this package, a node "/move_turtle" can be created to command the "/turtlesim" node.
 
 This node is created in order to perform a speciffic motion control function:
 - publishes in the /turtle1/cmd_vel topic 
@@ -23,8 +25,6 @@ This is performed following the tutorial:
 
 ![](./Images/3_move_turtle.png)
 
-For that We have already created a "turtlesim_tutorial" package where different motion control programs will be done.
-
 We remind you how to create a "turtlesim_tutorial" package with dependencies (rospy, geometry_msgs, turtlesim)
 
 In src directory:
@@ -35,6 +35,8 @@ cd ..
 catkin_make
 ```
 We have also created a folder "scripts" where we have placed python programs for speciffic motion control functions. 
+
+Let's perform different exercises to understand how to programm the motion control functions in ROS environment.
 
 ### **Exercise: Move distance with turtlesim**
 Develop a python script to perform the following functionalities.

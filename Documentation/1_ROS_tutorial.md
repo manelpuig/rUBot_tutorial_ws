@@ -26,7 +26,7 @@ Its development started at Willow Garage, a technology incubator and robotics re
 
 Let’s look at the ROS system from a very high level view. No need to worry how any of the following works, we will cover that later.
 
-ROS starts with the ROS Master. The Master allows all other ROS pieces of software (Nodes) to find and talk to each other. That way, we do not have to ever specifically state “Send this sensor data to that computer at 127.0.0.1. We can simply tell Node 1 to send messages to Node 2.
+ROS starts with the ROS Master. The Master allows all other ROS pieces of software (Nodes) to find and talk to each other. That way, we do not have to ever specifically state “Send this sensor data to that computer at 127.0.0.1". We can simply tell Node 1 to send messages to Node 2.
 
 ![](./Images/1_ros_nodes.png)
 
@@ -34,7 +34,7 @@ How do Nodes do this? By publishing and subscribing to Topics.
 
 Let’s say we have a camera on our Robot. We want to be able to see the images from the camera, both on the Robot itself, and on another laptop.
 
-In our example, we have a Camera Node that takes care of communication with the camera, a Image Processing Node on the robot that process image data, and a Image Display Node that displays images on a screen. To start with, all Nodes have registered with the Master. Think of the Master as a lookup table where all the nodes go to find where exactly to send messages.
+In our example, we have a Camera Node that takes care of communication with the camera, a Image Processing Node on the robot that process image data, and a Image Display Node that displays images on a laptop screen. To start with, all Nodes have registered with the Master. Think of the Master as a lookup table where all the nodes go to find where exactly to send messages.
 
 ![](./Images/1_ros_nodes_camera.png)
 
@@ -62,12 +62,11 @@ Be sure you have installed the turtlesim package and run it:
 
 ```shell
 roscore
-roscd turtlesim
 rosrun turtlesim turtlesim_node
 ```
 ![](./Images/1_turtlesim1.png)
 
-"turtlesim_node" is a node responsible to spaw the turtle in the blue board
+"turtlesim_node" is a node responsible to spawn the turtle in the blue board
 
 ![](./Images/2_turtlesim_node.png)
 
@@ -95,7 +94,7 @@ rosmsg show turtlesim/Pose
 you can also find the message structure in google: http://docs.ros.org/melodic/api/geometry_msgs/html/msg/Twist.html
 
 In order to write a message to a topic we have different options:
-- we can publish directly to the topic: for exemple we publish a Twist type message with a rate of 1Hz to define a circle, type:
+- we can publish directly to the topic: for exemple to publish a Twist type message with a rate of 1Hz to define a circle, type:
 
 ```shell
 rostopic pub -r 1 /turtle1/cmd_vel geometry_msgs/Twist '[2, 0, 0]' '[0, 0, 2]'
@@ -128,47 +127,16 @@ rqt_plot
 
 ![](./Images/1_turtlesim8.png)
 
-## PC WorkSpace
 
-In order to design our own nodes, we have first to prepare your WS:
+## **Create new ROS Packages**
 
-- you can fork the "rubot_tutorial_ws" repository from my github
-![](./Images/1_fork.png)
-- open your virtual machine Ubuntu20 with ROS Noetic and clone your forked directory in your Desktop
-```shell
-git clone https://github.com/your username/rUBot_tutorial_ws
-```
-- Open .bashrc file and ensure that you have the last 2 lines:
-```xml
-source /opt/ros/noetic/setup.bash
-source ~/Desktop/rUBot_tutorial_ws/devel/setup.bash
-```
-- Compile:
-```shell
-cd ~/Desktop/rubot_tutorial_ws
-catkin_make
-```
-- You are ready to work with your repository for this session
-- When finished, syncronize the changes with your github. Open a terminal in your local repository and type the first time:
-```shell
-git config --global user.email mail@alumnes.ub.edu
-git config --global user.name 'your github username'
-```
-- for succesive times, you only need to do:
-```shell
-git add ./*
-git commit -a -m 'message'
-git push
-```
-- you will need to insert the username and the saved PAT password
-
-## Create new ROS Packages
+To program any functionality in ROS environment we need to create a Package.
 
 For this first course in ROS, all the needed packages are already created.
 
 The procedure followed to create a package, its sintax and all the information is described in: http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29
 
-The needed steps are:
+The needed steps to create a "ros_basics" package are:
 ```shell
 cd ~/Desktop/rUBot_tutorial_ws/src
 catkin_create_pkg ros_basics std_msgs rospy
@@ -176,11 +144,11 @@ cd ~/Desktop/rUBot_tutorial_ws
 catkin_make
 source ~/Desktop/rUBot_tutorial_ws/devel/setup.bash
 ```
-## ROS Publishers and Subscribers
+### **ROS Publishers and Subscribers**
 
 In order to generate a node to Publish and/or Subscribe in a topic/s, we can create a python file in script folder in "ros_basics" package.
 
-We will show first graphically a "talker" and "listener" nodes, a "chatter" topic and the String type messages created for communication purposes:
+As a "talker-listener" exemple, we will show first graphically a "talker" and "listener" nodes, a "chatter" topic and the String type messages created for communication purposes:
 
 ![](./Images/2_PubSub_1.png)
 
@@ -215,7 +183,7 @@ if __name__ == '__main__':
 Also another python subscriber node is defined to:
 - create a "listener" node
 - subscribe to the /chatter topic 
-- a message of type std_msgs.msgs.String 
+- a message of String type (from std_msgs package) 
 - When new messages are received, callback is invoked with the message as the first argument
 
 The syntaxis code in python is:
@@ -240,7 +208,7 @@ if __name__ == '__main__':
 Create a "doubler" node that:
 - subscribes to a /number topic
 - calculates the double of the number read in /number topic
-- publish the result in /doubled topic
+- publishes the result in /doubled topic
 
 ![](./Images/2_PubSub_2.png)
 The python code is represented in "doubler.py"
@@ -280,6 +248,7 @@ In this exercise, we develop python scripts to perform the following functionali
 
 Graphically is represented by:
 ![](./Images/2_PubSub_3.png)
+
 Create in  the "script" folder the python file "publisher_num.py" for the Publiser:
 ```python
 #!/usr/bin/env python3
@@ -300,7 +269,7 @@ Do not forget to make the file executable: chmod +x Publisher_num.py
 
 In "script" folder create the python file "pubsub_counter.py" for the Publiser/Subscriber:
 ```python
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import rospy
 from std_msgs.msg import Int64
 

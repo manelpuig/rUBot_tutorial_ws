@@ -2,7 +2,7 @@
 import rospy
 from geometry_msgs.msg import Twist
 from turtlesim.msg import Pose
-from math import pow, atan2, sqrt
+from math import pow, atan2, sqrt, pi
 
 
 class TurtleBot:
@@ -59,7 +59,7 @@ class TurtleBot:
         goal_pose.y = input("Set your y goal: ")
         angle = input("Orientation (in degrees):")
 
-        relative_angle = angle*2*3.141592653589793238462643383279/360
+        relative_angle = angle*2*pi/360
 
         # Please, insert a number slightly greater than 0 (e.g. 0.01).
         distance_tolerance = input("Set your tolerance: ")
