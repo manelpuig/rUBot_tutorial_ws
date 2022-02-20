@@ -4,6 +4,9 @@ You need to prepare your Workspace with the following instructions:
 
 - Fork the "rubot_tutorial_ws" repository from my github
 ![](./Documentation/Images/1_fork.png)
+
+- Create a new sync permissions (Personal Access Tokens)
+![](./Documentation/Images/1_tokens.png)
 - Open your virtual machine Ubuntu20 with ROS Noetic and clone your forked directory in your Desktop
 ```shell
 git clone https://github.com/yourusername/rUBot_tutorial_ws
