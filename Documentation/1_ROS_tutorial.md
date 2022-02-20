@@ -130,3 +130,226 @@ rqt_plot
 
 ## PC WorkSpace
 
+In order to design our own nodes, we have first to prepare your WS:
+
+- you can fork the "rubot_tutorial_ws" repository from my github
+![](./Images/1_fork.png)
+- open your virtual machine Ubuntu20 with ROS Noetic and clone your forked directory in your Desktop
+```shell
+git clone https://github.com/your username/rUBot_tutorial_ws
+```
+- Open .bashrc file and ensure that you have the last 2 lines:
+```xml
+source /opt/ros/noetic/setup.bash
+source ~/Desktop/rUBot_tutorial_ws/devel/setup.bash
+```
+- Compile:
+```shell
+cd ~/Desktop/rubot_tutorial_ws
+catkin_make
+```
+- You are ready to work with your repository for this session
+- When finished, syncronize the changes with your github. Open a terminal in your local repository and type the first time:
+```shell
+git config --global user.email mail@alumnes.ub.edu
+git config --global user.name 'your github username'
+```
+- for succesive times, you only need to do:
+```shell
+git add ./*
+git commit -a -m 'message'
+git push
+```
+- you will need to insert the username and the saved PAT password
+
+## Create new ROS Packages
+
+For this first course in ROS, all the needed packages are already created.
+
+The procedure followed to create a package, its sintax and all the information is described in: http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29
+
+The needed steps are:
+```shell
+cd ~/Desktop/rUBot_tutorial_ws/src
+catkin_create_pkg ros_basics std_msgs rospy
+cd ~/Desktop/rUBot_tutorial_ws
+catkin_make
+source ~/Desktop/rUBot_tutorial_ws/devel/setup.bash
+```
+## ROS Publishers and Subscribers
+
+In order to generate a node to Publish and/or Subscribe in a topic/s, we can create a python file in script folder in "ros_basics" package.
+
+We will show first graphically a "talker" and "listener" nodes, a "chatter" topic and the String type messages created for communication purposes:
+
+![](./Images/2_PubSub_1.png)
+
+Here a python publisher node is defined to:
+- create a "talker" node
+- publish a String type message 
+- in a /chatter topic
+- with a rate of 10Hz
+
+The syntaxis code in python is:
+```python
+#!/usr/bin/env python3
+import rospy
+from std_msgs.msg import String
+
+def talker():
+    rospy.init_node('talker', anonymous=True)
+    pub = rospy.Publisher('chatter', String, queue_size=10)
+    rate = rospy.Rate(10) # 10hz
+    while not rospy.is_shutdown():
+        hello_str = "hello world %s" % rospy.get_time()
+        rospy.loginfo(hello_str)
+        pub.publish(hello_str)
+        rate.sleep()
+
+if __name__ == '__main__':
+    try:
+        talker()
+    except rospy.ROSInterruptException:
+        pass
+```
+Also another python subscriber node is defined to:
+- create a "listener" node
+- subscribe to the /chatter topic 
+- a message of type std_msgs.msgs.String 
+- When new messages are received, callback is invoked with the message as the first argument
+
+The syntaxis code in python is:
+
+```python
+#!/usr/bin/env python3
+import rospy
+from std_msgs.msg import String
+
+def callback(data):
+    rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
+    
+def listener():
+    rospy.init_node('listener', anonymous=True)
+    rospy.Subscriber("chatter", String, callback)
+    rospy.spin()
+
+if __name__ == '__main__':
+    listener()
+```
+### **Exercise: Doubled**
+Create a "doubler" node that:
+- subscribes to a /number topic
+- calculates the double of the number read in /number topic
+- publish the result in /doubled topic
+
+![](./Images/2_PubSub_2.png)
+The python code is represented in "doubler.py"
+```python
+#!/usr/bin/env python3
+import rospy
+from std_msgs.msg import Int32
+
+def callback(msg):
+    doubled = Int32()
+    doubled.data = msg.data * 2
+    pub.publish(doubled)
+
+rospy.init_node('doubler')
+sub = rospy.Subscriber('number', Int32, callback)
+pub = rospy.Publisher('doubled', Int32, queue_size=10)
+rospy.spin()
+```
+Carefull!:
+Be sure that the python editor has "End of Line sequence" selected to LF (right-bottom section in VS Code)
+
+To verify the program, we have to publish a number in /number topic and subscibe to the /doubled topic using different terminals:
+```shell
+roscore
+rosrun ros_basics doubler.py
+rostopic echo /doubled
+rostopic pub /number std_msgs/Int32 2
+rqt_graph
+```
+![](./Images/03_Doubled1.png)
+![](./Images/03_Doubled2.png)
+
+### **Exercise: Counter**
+In this exercise, we develop python scripts to perform the following functionalities.
+- Publish a number every 1s
+- Read this number, adds with the previous one and publishes the result
+
+Graphically is represented by:
+![](./Images/2_PubSub_3.png)
+Create in  the "script" folder the python file "publisher_num.py" for the Publiser:
+```python
+#!/usr/bin/env python3
+import rospy
+from std_msgs.msg import Int64
+
+rospy.init_node("number_publisher", anonymous=True)
+pub = rospy.Publisher("/number", Int64, queue_size=10)
+rate = rospy.Rate(1)
+
+while not rospy.is_shutdown():
+	msg = Int64()
+	msg.data = 2
+	pub.publish(msg)
+	rate.sleep()
+```
+Do not forget to make the file executable: chmod +x Publisher_num.py
+
+In "script" folder create the python file "pubsub_counter.py" for the Publiser/Subscriber:
+```python
+#!/usr/bin/env python
+import rospy
+from std_msgs.msg import Int64
+
+counter = 0
+
+def callback_number(msg):
+	global counter
+	counter += msg.data
+	new_msg = Int64()
+	new_msg.data = counter
+	pub.publish(new_msg)
+	rospy.loginfo("I Publish the counter value: %s", counter)
+
+rospy.init_node('number_counter')
+pub = rospy.Publisher("/number_count", Int64, queue_size=10)
+sub = rospy.Subscriber("/number", Int64, callback_number)
+rospy.spin()
+```
+Do not forget to make the file executable: 
+- chmod +x pubsub_counter.py
+
+These python scripts can be adapted to the desired control functions.
+
+To properly run the ROS application, create a launch folder containing the "counter.launch" file:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <node pkg="ros_basics" type="publisher_num.py" name="number_publisher"/>
+    <node pkg="ros_basics" type="pubsub_counter.py" name="number_counter" output="screen" />
+</launch>
+```
+To launch the exercise, type:
+```shell
+roslaunch ros_basics counter.launch
+rqt_graph
+```
+![](./Images/2_PubSub_4.png)
+![](./Images/2_counter2.png)
+
+## **Exercise**
+Let's program 2 ping-pong nodes according to this graph, with the functionality:
+- ping_node publish a word every 1s
+- if this word is "Ping", pong_node that is subscribing the ping topic answers "Pong" in other case answers "Failed!"
+
+![](./Images/2_ping_pong.png)
+
+To verify the ping-pong program, type:
+```shell
+roslaunch ros_basics ping_pong.launch
+```
+![](./Images/2_ping_pong_out.png)
