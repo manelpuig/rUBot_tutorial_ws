@@ -26,10 +26,11 @@ catkin_make
 ```shell
 git config --global user.email mail@alumnes.ub.edu
 git config --global user.name 'your github username'
+git config --global credential.helper store
 ```
 - for succesive times, you only need to do:
 ```shell
-git add ./*
+git add -A
 git commit -a -m 'message'
 git push
 ```
