@@ -134,14 +134,14 @@ roslaunch turtlesim_tutorial move_distance.launch
 Develop a ROS node to perform the following functionalities.
 - Specify a target point (x,y) with a tolerance for turtlesim to move
 - Read the Pose of turtlesim
-- if the Pose is lower than the the distance specified, publish linear and angular speed
-- if the Pose is higher, stop
+- if the turtlesim Position is far from the point, publish linear and angular speed
+- if is close within the tolerance, stop
 
 ![](./Images/3_move_turtle.png)
 
 We can do better!
 
-We can use a python Class and use input parameters to specify the target point and tolerance
+We can program in Object Oriented Programming, creating a python Class and use input parameters to specify the target point and tolerance
 
 Object Oriented Programming (OOP) is everywhere in python. 
 - OOP is a way to organize your code into Classes. 
