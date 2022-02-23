@@ -46,6 +46,7 @@ Develop a python script to perform the following functionalities.
 - if the Pose.x is higher, then stop
 
 ![](./Images/3_move_turtle.png)
+
 Create in "scripts" folder the python file "move_distance.py"
 ```python
 #!/usr/bin/env python3
