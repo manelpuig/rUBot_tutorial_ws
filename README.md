@@ -1,6 +1,29 @@
-# rUBot_Tutorial_ws
+# **rUBot_Tutorial_ws**
 This is a first tutorial to learn ROS basics.
-You need to prepare your Workspace with the following instructions:
+
+You will need to :
+- setup ROS Noetic in your PC
+- Prepare your Workspace 
+
+## **1. Setup ROS Noetic in you PC**
+You have diferent options:
+### **Use "Aula Virtual"**
+All the SW is installed and ready to work
+
+Follow the link: http://www.ub.edu/aules-virtuals/treballo-amb-windows/
+
+### **Install ROS Noetic in your PC**
+You have first to install VirtualBox: https://www.virtualbox.org/wiki/Downloads
+
+Then you need to install a Virtual Machine with Ubuntu 20 and ROS Noetic. You have two options:
+- Download a preinstalled ROS Noetic Virtual Machine from here: https://ubarcelona-my.sharepoint.com/:u:/g/personal/manel_puig_ub_edu/EYDtbVLrS7tBrU54EgVwfF8BWPZ6IYuBEUQGwZFTs6Y4PQ?e=BdfKhX
+- Custom installation:
+    - Install Ubuntu 20 Virtual Machine in Virtual Box (https://ubuntu.com/download/desktop)
+    - start the Ubuntu20 virtual machine
+    - Install ROS Noetic following the instructions: http://wiki.ros.org/noetic/Installation/Ubuntu
+
+## **2. Prepare your Workspace**
+Once you are in the ROS Noetic Virtual machine, follow the instructions:
 
 - Fork the "rubot_tutorial_ws" repository from my github
 ![](./Documentation/Images/1_fork.png)
