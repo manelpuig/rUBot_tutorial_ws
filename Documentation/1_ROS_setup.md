@@ -30,9 +30,15 @@ Once you are in the ROS Noetic Virtual machine, you can:
 - Use an existing workspace
 
 ### **2.1 Create your own workspace**
+This is the best option to learn ROS. You will create a new repository and you will follow the instructions to create all the packages to fulfill the objectives and functionalities.
+
+- In your github account, create a new public repository
+- add gitignore with ROS option
+- Sync this repository locally in your Ubuntu ROS Noetic session following the instructions in the next section.
 
 ### **2.2 Use an existing workspace**
-follow the instructions:
+You can also use our repository and make your modifications according to the exercises we will propose you. 
+In that case, you can follow the instructions:
 
 - Fork the "rubot_tutorial_ws" repository from my github
 ![](./Documentation/Images/1_fork.png)
