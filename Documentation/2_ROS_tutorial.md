@@ -2,6 +2,7 @@
 
 This tutorial has been extracted from the following references:
 - http://wiki.ros.org/ROS/Tutorials
+- https://sir.upc.edu/projects/rostutorials/index.html
 - http://www.clearpathrobotics.com/assets/guides/kinetic/ros/
 - ROS free course in Udemy: https://www.udemy.com/share/101GMwAEITeFhTRX4F/
 - ROS Course Anis Koubaa: https://www.udemy.com/ros-essentials/
