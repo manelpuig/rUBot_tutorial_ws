@@ -81,3 +81,9 @@ git push
 ```
 - you will need to insert the username and the saved PAT password
 - syncronize your repository several times to save your work in your github account
+> - You can **update** your repository either in your local or **remote repository**:
+>   - Local: with the previous instructions
+>   - Remote: using web-based Visual Studio Code:
+>       - pressing "·" key
+>       - performing repository modifications
+>       - typing "**git pull**" to syncronize
