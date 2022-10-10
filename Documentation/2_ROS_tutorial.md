@@ -14,34 +14,34 @@ https://bitbucket.org/theconstructcore/workspace/projects/
 
 # What is ROS?
 
-Robot Operating System (ROS) is an open source software environment used worldwide to program in robotics. 
+**Robot Operating System (ROS)** is an open source software environment used worldwide to program in robotics. 
 
-Its development started at Willow Garage, a technology incubator and robotics research laboratory in Stanford University. 
+Its development started at **Willow Garage**, a technology incubator and robotics research laboratory in Stanford University. 
 - Its origin dates back to several projects at Stanford University from the mid-2000s, where researchers found themselves reinventing the wheel every time they had to build the software for each project. 
-- In 2007, Willow Garage took the lead and gave rise to ROS. The main goal was to reuse existing code and make it possible to prototype new robot designs quickly, focusing on high-level functionality and minimizing the need for editing code.
-- ROS is intended for the development of applications where different devices have to talk to each other in order to create a flexible and scalable environment.
-- A ROS system is comprised of a number of independent nodes, each of which communicates with the other nodes using a publish/subscribe messaging model. For example, a particular sensor’s driver might be implemented as a node, which publishes sensor data in a stream of messages. These messages could be consumed by any number of other nodes, including filters, loggers, and also higher-level systems such as guidance, pathfinding, etc.
-- Note that nodes in ROS do not have to be on the same system (multiple computers) or even of the same architecture! You could have a Arduino publishing messages, a laptop subscribing to them, and an Android phone driving motors. This makes ROS really flexible and adaptable to the needs of the user. ROS is also open source, maintained by many people.
+- In **2007**, Willow Garage **starts ROS environment development**. The main goal was to **reuse existing code** and make it possible to **prototype new robot designs quickly**, focusing on high-level functionality and minimizing the need for editing code.
+- ROS is useful for **applications where different devices have to talk to each other** in order to create a flexible and scalable environment.
+- A **ROS system** is comprised of a number of independent **nodes**, each of which **communicates** with the other nodes using a **publish/subscribe messaging model**. For example, a particular sensor’s driver might be implemented as a node, which publishes sensor data in a stream of messages. These messages could be consumed by any number of other nodes, including filters, loggers, and also higher-level systems such as guidance, pathfinding, etc.
+- Note that **nodes in ROS** do not have to be on the same system (multiple computers) or even of the same architecture! You **could have a Arduino publishing messages, a laptop subscribing to them, and an Android phone driving motors**. This makes ROS really flexible and adaptable to the needs of the user. **ROS is also open source, maintained by many people**.
 
 # General Concepts
 
-Let’s look at the ROS system from a very high level view. No need to worry how any of the following works, we will cover that later.
+Let’s look at the **ROS system from a very high level view**. No need to worry how any of the following works, we will cover that later.
 
-ROS starts with the ROS Master. The Master allows all other ROS pieces of software (Nodes) to find and talk to each other. That way, we do not have to ever specifically state “Send this sensor data to that computer at 127.0.0.1". We can simply tell Node 1 to send messages to Node 2.
+ROS starts with the **ROS Master**. The Master allows all other ROS pieces of software **(Nodes) to find and talk to each other**. That way, we do not have to ever specifically state “Send this sensor data to that computer at 127.0.0.1". We can simply tell Node 1 to send messages to Node 2.
 
 ![](./Images/1_ros_nodes.png)
 
-How do Nodes do this? By publishing and subscribing to Topics.
+How do Nodes do this? The **communication is ensured by publishing and subscribing messages to Topics**.
 
 Let’s say we have a camera on our Robot. We want to be able to see the images from the camera, both on the Robot itself, and on another laptop.
 
-In our example, we have a Camera Node that takes care of communication with the camera, a Image Processing Node on the robot that process image data, and a Image Display Node that displays images on a laptop screen. To start with, all Nodes have registered with the Master. Think of the Master as a lookup table where all the nodes go to find where exactly to send messages.
+**In our example**, we have a **Camera Node that takes care of communication with the camera**, a **Image Processing Node, the communication with the robot** that process image data, and a **Image Display Node that displays images on a laptop screen**. To start with, all Nodes have registered with the Master. Think of the Master as a lookup table where all the nodes go to find where exactly to send messages.
 
 ![](./Images/1_ros_nodes_camera.png)
 
-In registering with the ROS Master, the Camera Node states that it will Publish a Topic called /image_data (for example). Both of the other Nodes register that they are Subscribed to the Topic /image_data.
+In **registering with the ROS Master**, the **Camera Node can Publish Images in a Topic called /image_data** (for example). Both of the **other Nodes can Subscribe to the Topic /image_data to read the images**.
 
-Thus, once the Camera Node receives some data from the Camera, it sends the /image_data message directly to the other two nodes. (Through what is essentially TCP/IP)
+Thus, **once the Camera Node receives some data from the Camera, it sends the /image_data message directly to the other two nodes**. (Through what is essentially TCP/IP)
 
 ![](./Images/1_ros_nodes_camera2.png)
 
@@ -53,7 +53,7 @@ A Node can register a specific service with the ROS Master, just as it registers
 
 # ROS nodes and topics with Turtlesim 
 
-In order to understand the ROS environment, with nodes, topics and communication between nodes is very interesting to see the Turtlesim exemple.
+In order **to understand the ROS environment, with nodes, topics and communication** between nodes is very interesting to see the **Turtlesim exemple**.
 
 This tutorial has been extracted from: 
  - http://wiki.ros.org/turtlesim
@@ -71,21 +71,21 @@ rosrun turtlesim turtlesim_node
 
 ![](./Images/2_turtlesim_node.png)
 
-To list the nodes and topics, type:
+To **list the nodes and topics**, type:
 ```shell
 rosnode list
 rostopic list
 ```
 ![](./Images/1_turtlesim2.png)
 
-To see the information about the nodes, topics and messages, type:
+To see the **information about the nodes, topics and messages**, type:
 
 ```shell
 rosnode info /turtlesim
 rostopic info /turtle1/cmd_vel
 rostopic info /turtle1/pose
 ```
-In order to see the message structure, type:
+In order **to see the message structure**, type:
 ```shell
 rosmsg show geometry_msgs/Twist
 rosmsg show turtlesim/Pose 
@@ -94,8 +94,8 @@ rosmsg show turtlesim/Pose
 
 you can also find the message structure in google: http://docs.ros.org/melodic/api/geometry_msgs/html/msg/Twist.html
 
-In order to write a message to a topic we have different options:
-- we can publish directly to the topic: for exemple to publish a Twist type message with a rate of 1Hz to define a circle, type:
+In order **to write a message to a topic** we have different options:
+- we can **publish directly to the topic**: for exemple to publish a Twist type message with a rate of 1Hz to define a circle, type:
 
 ```shell
 rostopic pub -r 1 /turtle1/cmd_vel geometry_msgs/Twist '[2, 0, 0]' '[0, 0, 2]'
@@ -103,7 +103,7 @@ rostopic pub -r 1 /turtle1/cmd_vel geometry_msgs/Twist '[2, 0, 0]' '[0, 0, 2]'
 
 ![](./Images/1_turtlesim7.png)
 
-- or we can write a node to use the keyboard arrows to generate and publish the cmd_vel messages to the /cmd_vel topic:
+- or we can write a node to **use the keyboard arrows** to generate and publish the cmd_vel messages to the /cmd_vel topic:
 ```shell
 rosrun turtlesim turtle_teleop_key
 ```
@@ -111,7 +111,7 @@ rosrun turtlesim turtle_teleop_key
 
 "turtle_teleop_key" is another node responsible to comand and move the turtle.
 
-In order to listen a message from a topic:
+In order **to listen a message from a topic**:
 ```shell
 rostopic echo /turtle1/pose
 rostopic echo /turtle1/cmd_vel
