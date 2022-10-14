@@ -128,6 +128,7 @@ rqt_plot
 
 ![](./Images/1_turtlesim8.png)
 
+> Note in ROS for windows: you need to install graphviz and add to the PATH for all users, to properly see rqt_graph: https://graphviz.org/download/
 
 ## **Create new ROS Packages**
 
