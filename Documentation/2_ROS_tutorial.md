@@ -240,6 +240,20 @@ rostopic echo /doubled
 rostopic pub /number std_msgs/Int32 2
 rqt_graph
 ```
+With ROS_windows you need to create a "counter.launch" file to properly run the application:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <node pkg="ros_basics" type="doubler.py" name="doubler" output="screen" />
+</launch>
+```
+Type:
+```shell
+roslaunch ros_basics doubler.launch
+rostopic echo /doubled
+rostopic pub /number std_msgs/Int32 2
+rqt_graph
+```
 ![](./Images/03_Doubled1.png)
 ![](./Images/03_Doubled2.png)
 
