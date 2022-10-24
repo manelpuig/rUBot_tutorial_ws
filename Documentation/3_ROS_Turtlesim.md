@@ -55,8 +55,6 @@ roscore
 rosrun turtlesim turtlesim_node
 rosrun turtlesim_tutorial move_distance.py 0.4 0.0 7.0
 ```
-![](./Images/1_turtlesim_move_dist1.png)
-![](./Images/1_turtlesim_move_dist2.png)
 
 When using ROS_windows, we have to generate a launch file "move_distance.launch" to run all nodes:
 ```xml
@@ -124,6 +122,8 @@ To execute it, type:
 ```shell
 roslaunch turtlesim_tutorial move_distance.launch
 ```
+![](./Images/1_turtlesim_move_dist1.png)
+![](./Images/1_turtlesim_move_dist2.png)
 ### **Exercise: Go to target point with turtlesim**
 Develop a ROS node to perform the following functionalities.
 - Specify a target point (x,y) with a tolerance for turtlesim to move
