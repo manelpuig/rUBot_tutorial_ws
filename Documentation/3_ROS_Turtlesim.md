@@ -48,6 +48,33 @@ Develop a python script to perform the following functionalities.
 ![](./Images/3_move_turtle.png)
 
 Create in "scripts" folder the python file "move_distance.py"
+
+make the file executable, and type in a terminal:
+```shell
+roscore
+rosrun turtlesim turtlesim_node
+rosrun turtlesim_tutorial move_distance.py 0.4 0.0 7.0
+```
+![](./Images/1_turtlesim_move_dist1.png)
+![](./Images/1_turtlesim_move_dist2.png)
+
+When using ROS_windows, we have to generate a launch file "move_distance.launch" to run all nodes:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <arg name="v" default="0.7"/>
+    <arg name="w" default="0"/>
+    <arg name="d" default="7"/>
+    <param name="v" value="$(arg v)"/>
+    <param name="w" value="$(arg w)"/>
+    <param name="d" value="$(arg d)"/>
+    <node pkg="turtlesim" type="turtlesim_node" name="turtlesim_node"/>
+    <node pkg="turtlesim_tutorial" type="move_distance_params.py" name="move_turtle" output="screen" />
+</launch>
+```
+We have created here a new "move_distance_params.py" script to introduce the parameters in the python script:
+
 ```python
 #!/usr/bin/env python3
 import rospy
@@ -76,47 +103,14 @@ def move_turtle(lin_vel,ang_vel,distance):
         vel.angular.x = 0
         vel.angular.y = 0
         vel.angular.z = ang_vel
-
-	if(robot_x >= distance):
-		rospy.loginfo("Robot Reached destination")
-		rospy.logwarn("Stopping robot")
-		break
+ 
+        if(robot_x >= distance):
+            rospy.loginfo("Robot Reached destination")
+            rospy.logwarn("Stopping robot")
+            break
         pub.publish(vel)
         rate.sleep()
 
-if __name__ == '__main__':
-    try:
-        move_turtle(float(sys.argv[1]),float(sys.argv[2]),float(sys.argv[3]))
-    except rospy.ROSInterruptException:
-        pass
-```
-make the file executable, and type in a terminal:
-```shell
-roscore
-rosrun turtlesim turtlesim_node
-rosrun turtlesim_tutorial move_distance.py 0.4 0.0 7.0
-```
-![](./Images/1_turtlesim_move_dist1.png)
-![](./Images/1_turtlesim_move_dist2.png)
-
-We can generate a launch file "move_distance.launch" to run all nodes:
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-
-<launch>
-    <arg name="v" default="0.7"/>
-    <arg name="w" default="0"/>
-    <arg name="d" default="7"/>
-    <param name="v" value="$(arg v)"/>
-    <param name="w" value="$(arg w)"/>
-    <param name="d" value="$(arg d)"/>
-    <node pkg="turtlesim" type="turtlesim_node" name="turtlesim_node"/>
-    <node pkg="turtlesim_tutorial" type="move_distance_params.py" name="move_turtle" output="screen" />
-</launch>
-```
-we have created here a new "move_distance_params.py" script to introduce the parameters in the python script: (the last program lines)
-
-```python
 if __name__ == '__main__':
     try:
         v= rospy.get_param('v')
