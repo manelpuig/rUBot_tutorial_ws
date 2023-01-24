@@ -19,7 +19,16 @@ In windows:
 - Stablish WSL2 as default by opening a powershell and typing: wsl --set-default-version 2
 - restart your computer
 
-The usefull images you can install are:
+### **1.1 ROS1 Images**
+
+Official images are:
+- ROS Noetic: osrf/ros:noetic-desktop-full
+- Open PowerShell and type: 
+```shell
+docker pull osrf/ros:noetic-desktop-full
+```
+
+Other usefull vnc images you can install are:
 - ROS_Noetic: arvinskushwaha/ros-noetic-desktop-vnc:latest
 - ROS2_Foxy: riel0327/ros2-foxy-desktop:foxy
 
