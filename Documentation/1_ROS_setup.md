@@ -93,6 +93,14 @@ cd /home/ubuntu/rubot_tutorial_ws
 ```
 - You are ready to work with your repository for this session
 
-When finished, **syncronize** the changes with your github. 
-- Using github web editor
-- using github Desktop
+## **1.3. Repository syncronisation**
+When working on VS Code, you need to:
+
+- Select "source control" from left side menu
+- select changes to sync
+- Add a commit
+- Push
+
+Alternativelly you could:
+- Use github web editor
+- use github Desktop
