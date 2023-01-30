@@ -27,24 +27,10 @@ Official images are:
 ```shell
 docker pull osrf/ros:noetic-desktop-full
 ```
-
-Other usefull vnc images you can install are:
-- ROS_Noetic: arvinskushwaha/ros-noetic-desktop-vnc:latest
-- ROS2_Foxy: riel0327/ros2-foxy-desktop:foxy
-
-Some important trics:
-- To copy and paste text use the clipboard
-- For home symbol use the "Extra keys"
-- To copy files or folders from/to windows, open a Power Shell terminal and type:
+To create a Container with GUI and folder share, open a terminal and type:
 ```shell
-docker cp c:/Users/puigm/Desktop/road1 Ros1_Noetic:/home/ubuntu/rUBot_mecanum_ws/src/rubot_mecanum_description/models
-docker cp Ros1_Noetic:/home/ubuntu/rUBot_mecanum_ws/src/rubot_mecanum_description/worlds/road1.world c:/Users/puigm/Desktop
+docker run --name ROS1_Noetic_share -e DISPLAY=host.docker.internal:0.0 --mount src="C:\Users\HP\OneDrive\Escritorio\ROS\shared_folder",dst=/home/myDocker_shared,type=bind -it ros1_noetic_mpuig:latest
 ```
-
-For HW image recording we will use "USB Image Tool".
-This software will be used to create an image of SD card to share and copy to another SD card.
-- Download the SW from: 
-https://www.alexpage.de/usb-image-tool/download/
 
 ## **2. Prepare your Workspace**
 Once you are in the ROS Noetic Virtual machine, you can:
