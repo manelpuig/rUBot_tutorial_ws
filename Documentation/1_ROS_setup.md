@@ -4,12 +4,9 @@ This is a first tutorial to learn ROS basics.
 First of all we will learn how to install the ROS in your computer.
 
 ## **1. ROS Installation & Tools**
-Installation will be made using Docker:
+You have to install:
 
-- https://docs.docker.com/get-docker/
-
-In windows:
-- https://docs.docker.com/desktop/install/windows-install/
+a) Docker for windows: an easy to install application that enables you to manage your containers (https://docs.docker.com/desktop/install/windows-install/)
 
     >   Open PowerShell terminal and type: systeminfo | find "Tipo de sistema"
     >
@@ -18,6 +15,10 @@ In windows:
 - Then you have to complete your installation with WSL 2 for kernell update in: https://learn.microsoft.com/ca-es/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
 - Stablish WSL2 as default by opening a powershell and typing: wsl --set-default-version 2
 - restart your computer
+
+b) Xming X server for Windows, an X11 display server that will allow you to visualize, in particular the RViZ robot visualization and tools and the Gazebo simulation of the robot. (https://sourceforge.net/projects/xming/)
+
+c) Visual Studio Code
 
 ### **1.1 ROS1 Images**
 
@@ -31,6 +32,24 @@ To create a Container with GUI and folder share, open a terminal and type:
 ```shell
 docker run --name ROS1_Noetic_share -e DISPLAY=host.docker.internal:0.0 --mount src="C:\Users\HP\OneDrive\Escritorio\ROS\shared_folder",dst=/home/myDocker_shared,type=bind -it ros1_noetic_mpuig:latest
 ```
+
+### **1.2. XLaunch**
+For graphical interface, open Xlaunch:
+- First choose “Multiple windows” and set to 0 the “Display number”
+- Then, set “Start no client” in the second screen
+- In the third screen, click “Clipboard” and Primary Selection and “Disable access control”, while leaving “Native opengl” unclicked
+- And just click “Finalize” in the last screen
+
+### **1.3. VS Code**
+Use your Visual Studio Code with the extensions:
+
+- Docker
+- Dev Containers
+
+Execute the container and Connect to it within VS Code:
+
+- from left-side menu choose Docker
+- right-click on the running container and select "Attach VS Code"
 
 ## **2. Prepare your Workspace**
 Once you are in the ROS Noetic Virtual machine, you can:
