@@ -1,7 +1,6 @@
 # **rUBot_Tutorial_ws**
-This is a first tutorial to learn ROS basics.
 
-First of all we will learn how to install the ROS in your computer.
+First of all we will learn how to install the ROS Noetic in your computer from a Docker utility.
 
 ## **1. ROS Installation & Tools**
 You have to install:
@@ -30,7 +29,7 @@ docker pull osrf/ros:noetic-desktop-full
 ```
 To create a Container with GUI and folder share, open a terminal and type:
 ```shell
-docker run --name ROS1_Noetic_share -e DISPLAY=host.docker.internal:0.0 --mount src="C:\Users\HP\OneDrive\Escritorio\ROS\shared_folder",dst=/home/myDocker_shared,type=bind -it ros1_noetic_mpuig:latest
+docker run --name ROS1_Noetic_mpuig -e DISPLAY=host.docker.internal:0.0 --mount src="C:\Users\puigm\Desktop\ROS\shared_folder",dst=/home/myDocker_shared,type=bind -it osrf/ros:noetic-desktop-full
 ```
 
 ### **1.2. XLaunch**
@@ -46,11 +45,21 @@ Use your Visual Studio Code with the extensions:
 - Docker
 - Dev Containers
 
-Execute the container and Connect to it within VS Code:
+We will use VS Code to sync a copy of your github repository in your local PC:
+- Open VS Code and choose "Clone repository"
+- type the github link of the desired repository
+- select the local destination folder
 
-- from left-side menu choose Docker
-- right-click on the running container and select "Attach VS Code"
-
+We will also use VS Code to sync the changes we have made in Docker:
+- Open Docker Desktop
+- Execute the container and Connect to it within VS Code:
+    - from left-side menu choose Docker
+    - right-click on the running container and select "Attach VS Code"
+- Once you have finish you can sync the changes from "source control":
+    - Select "source control" from left side menu
+    - select changes to sync
+    - Add a commit
+    - Push
 ## **2. Prepare your Workspace**
 Once you are in the ROS Noetic Virtual machine, you can:
 - create your own workspace
