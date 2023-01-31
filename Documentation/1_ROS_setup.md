@@ -40,26 +40,32 @@ For graphical interface, open Xlaunch:
 - And just click “Finalize” in the last screen
 
 ### **1.3. VS Code**
-Use your Visual Studio Code with the extensions:
-
-- Docker
-- Dev Containers
 
 We will use VS Code to sync a copy of your github repository in your local PC:
 - Open VS Code and choose "Clone repository"
 - type the github link of the desired repository
 - select the local destination folder
 
-We will also use VS Code to sync the changes we have made in Docker:
+We will also use VS Code to work and sync the changes we have made in Docker Container:
+- Install in your Visual Studio Code the extensions:
+    - Docker
+    - Dev Containers
 - Open Docker Desktop
 - Execute the container and Connect to it within VS Code:
     - from left-side menu choose Docker
     - right-click on the running container and select "Attach VS Code"
-- Once you have finish you can sync the changes from "source control":
-    - Select "source control" from left side menu
-    - select changes to sync
-    - Add a commit
-    - Push
+- Update your docker Container:
+    ```shell
+    apt update
+    apt upgrade
+    ```
+    > repeat these instructions until you see "All packages are up to date"
+
+- Install some functionalities:
+    ```shell
+    apt install -y git && apt install -y python3-pip
+    ```
+
 ## **2. Prepare your Workspace**
 Once you are in the ROS Noetic Virtual machine, you can:
 - create your own workspace
@@ -79,27 +85,24 @@ In that case, you can follow the instructions:
 - Fork the "rubot_tutorial_ws" repository from my github
 ![](./Images/1_fork.png)
 
-- Open your Docker container with ROS Noetic and clone your forked directory in your Desktop (copy the exact url to your forked repository)
-
+- Open your Docker container with ROS Noetic 
+- Using VS Code, connect to the ROS1_Noetic running container
+- Clone your forked directory in your home directory of container
     ```shell
     git clone https://github.com/yourusername/rUBot_tutorial_ws
     ```
-    ![](./Images/1_gitclone_docker.png)
-- Compile:
-```shell
-cd ~/rubot_tutorial_ws
-catkin_make
-```
-- Open .bashrc file (from root)
-```shell
-gedit ~/.bashrc
-```
+- Open .bashrc file (from root) with VS Code (open file...)
 - Ensure that you have the last 2 lines (review the exact name of your repository):
-```xml
-source /opt/ros/noetic/setup.bash
-source ~/rUBot_tutorial_ws/devel/setup.bash
-cd /home/ubuntu/rubot_tutorial_ws
-```
+    ```xml
+    source /opt/ros/noetic/setup.bash
+    source home/rUBot_tutorial_ws/devel/setup.bash
+    cd /home/rUBot_tutorial_ws
+    ```
+- open a new terminal and Compile:
+    ```shell
+    cd /home/rUBot_tutorial_ws
+    catkin_make
+    ```
 - You are ready to work with your repository for this session
 
 ## **1.3. Repository syncronisation**
