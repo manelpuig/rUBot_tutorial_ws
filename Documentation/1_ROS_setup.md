@@ -50,6 +50,7 @@ We will also use VS Code to work and sync the changes we have made in Docker Con
 - Install in your Visual Studio Code the extensions:
     - Docker
     - Dev Containers
+    - Git Extension Pack
 - Open Docker Desktop
 - Execute the container and Connect to it within VS Code:
     - from left-side menu choose Docker
