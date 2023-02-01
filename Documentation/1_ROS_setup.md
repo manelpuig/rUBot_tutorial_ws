@@ -15,7 +15,7 @@ a) Docker for windows: an easy to install application that enables you to manage
 - Stablish WSL2 as default by opening a powershell and typing: wsl --set-default-version 2
 - restart your computer
 
-b) Xming X server for Windows, an X11 display server that will allow you to visualize, in particular the RViZ robot visualization and tools and the Gazebo simulation of the robot. (https://sourceforge.net/projects/xming/)
+b) X11 display server: Xming X server for Windows (https://sourceforge.net/projects/xming/), and XQuartz for macOS (https://www.xquartz.org/index.html). That will allow you to visualize, in particular the RViZ robot visualization and tools and the Gazebo simulation of the robot. 
 
 c) Visual Studio Code
 
