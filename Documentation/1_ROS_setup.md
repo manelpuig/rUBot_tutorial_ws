@@ -1,4 +1,4 @@
-1. **rUBot_Tutorial_ws**
+# **1. rUBot_Tutorial_ws**
 
 First of all we will learn how to install the ROS Noetic in your computer from a Docker utility.
 
@@ -126,7 +126,7 @@ In that case, you can follow the instructions:
   ```
 - You are ready to work with your repository for this session
 
-## **1.3. Repository syncronisation**
+## **3. Repository syncronisation**
 
 **In Docker container** (within VS Code), you need to:
 
