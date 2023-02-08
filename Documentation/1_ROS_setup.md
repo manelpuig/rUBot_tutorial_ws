@@ -1,6 +1,7 @@
 # **1. rUBot_Tutorial_ws**
 
-First of all we will learn how to install the ROS Noetic in your computer from a Docker utility.
+First of all we will learn how to install the ROS Noetic in your computer from a Docker utility. This is the best usefull way to work with ROS.
+
 
 ## **1. ROS Installation & Tools**
 
