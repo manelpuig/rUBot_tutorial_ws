@@ -6,7 +6,7 @@ First of all we will learn how to install the ROS Noetic in your computer from a
 
 You have to install:
 
-**a) D*ocker for windows*:** an easy to install application that enables you to manage your containers (https://docs.docker.com/desktop/install/windows-install/)
+**a) Docker for windows:** an easy to install application that enables you to manage your containers (https://docs.docker.com/desktop/install/windows-install/)
 
 * Then you have to complete your installation with WSL 2 for kernell update in: https://learn.microsoft.com/ca-es/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
 * Stablish WSL2 as default by opening a powershell and typing: wsl --set-default-version 2
@@ -27,19 +27,19 @@ Official images are:
 docker pull osrf/ros:noetic-desktop-full
 ```
 
-To create a Container with GUI and folder share (select your src absolute location), open a terminal and type:
+To create a Container (choose proper name) with GUI and folder share (select your src absolute location), open a terminal and type:
 
 ```shell
-docker run --name ROS1_Noetic_mpuig -e DISPLAY=host.docker.internal:0.0 --mount src="C:\Users\puigm\Desktop\ROS\shared_folder",dst=/home/myDocker_shared,type=bind -it osrf/ros:noetic-desktop-full
+docker run --name ROS1_Noetic_osrf -e DISPLAY=host.docker.internal:0.0 --mount src="C:\Users\puigm\Desktop\ROS_github\myPC_shared",dst=/home/myDocker_shared,type=bind -it osrf/ros:noetic-desktop-full
 ```
 
 ### **1.2. XLaunch**
 
 For graphical interface, open Xlaunch:
 
-- First choose “Multiple windows”and set to 0 the "Display number”
-- Then, set“Start no client”in the second screen
-- In the third screen, click “Clipboard” and Primary Selection and "Native opengl". Unclick "Disable access control"
+- First choose “Multiple windows” and set to 0 the "Display number”
+- Then, set “Start no client” in the second screen
+- In the third screen, click “Clipboard” and "Primary Selection", unclick "Native opengl" and click "Disable access control"
 - And just click “Finalize” in the last screen
 
 ### **1.3. VS Code**
