@@ -124,6 +124,8 @@ roslaunch turtlesim_tutorial move_distance.launch
 ```
 ![](./Images/1_turtlesim_move_dist1.png)
 ![](./Images/1_turtlesim_move_dist2.png)
+
+
 ### **Exercise: Go to target point with turtlesim**
 Develop a ROS node to perform the following functionalities.
 - Specify a target point (x,y) with a tolerance for turtlesim to move
@@ -259,8 +261,17 @@ roslaunch turtlesim_tutorial go2point.launch
 ![](./Images/1_turtlesim_launch1.png)
 ![](./Images/1_turtlesim_go2point2.png)
 
-## **Proposed Exercise: Go to Target position and orientation**
+### **Proposed Exercise 1: Move move during time interval with turtlesim**
+Modify the "move_distance_params.py" ROS node to:
+- Move with a generic twist vector
+- during a time interval
+
+
+### **Proposed Exercise 2: Go to Target position and orientation**
 
 The objective is to reach the desired position with the proper orientation also.
 
-We will create a new python script to reach first the position and later the orientation
+Modify the "go2point.py" ROS node to:
+- reach first the position 
+- and later the orientation
+

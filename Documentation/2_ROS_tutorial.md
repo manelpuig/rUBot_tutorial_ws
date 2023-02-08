@@ -12,7 +12,7 @@ This tutorial has been extracted from the following references:
 Important repositories from TheConstruct and other tutorials:
 https://bitbucket.org/theconstructcore/workspace/projects/
 
-# What is ROS?
+## **1. What is ROS?**
 
 **Robot Operating System (ROS)** is an open source software environment used worldwide to program in robotics. 
 
@@ -23,7 +23,7 @@ Its development started at **Willow Garage**, a technology incubator and robotic
 - A **ROS system** is comprised of a number of independent **nodes**, each of which **communicates** with the other nodes using a **publish/subscribe messaging model**. For example, a particular sensor’s driver might be implemented as a node, which publishes sensor data in a stream of messages. These messages could be consumed by any number of other nodes, including filters, loggers, and also higher-level systems such as guidance, pathfinding, etc.
 - Note that **nodes in ROS** do not have to be on the same system (multiple computers) or even of the same architecture! You **could have a Arduino publishing messages, a laptop subscribing to them, and an Android phone driving motors**. This makes ROS really flexible and adaptable to the needs of the user. **ROS is also open source, maintained by many people**.
 
-# General Concepts
+## **2. ROS General Concepts**
 
 Let’s look at the **ROS system from a very high level view**. No need to worry how any of the following works, we will cover that later.
 
@@ -51,7 +51,7 @@ A Node can register a specific service with the ROS Master, just as it registers
 
 ![](./Images/1_ros_nodes_camera_service.png)
 
-# ROS nodes and topics with Turtlesim 
+## **3. ROS nodes and topics with Turtlesim**
 
 In order **to understand the ROS environment, with nodes, topics and communication** between nodes is very interesting to see the **Turtlesim exemple**.
 
@@ -130,7 +130,7 @@ rqt_plot
 
 > Note in ROS for windows: you need to install graphviz and add to the PATH for all users, to properly see rqt_graph: https://graphviz.org/download/
 
-## **Create new ROS Packages**
+## **4. Create new ROS Packages**
 
 To program any functionality in ROS environment we need to create a Package.
 
@@ -140,13 +140,12 @@ The procedure followed to create a package, its sintax and all the information i
 
 The needed steps to create a "ros_basics" package are:
 ```shell
-cd ~/Desktop/rUBot_tutorial_ws/src
+cd /home/rUBot_tutorial_ws/src
 catkin_create_pkg ros_basics std_msgs rospy
-cd ~/Desktop/rUBot_tutorial_ws
+cd /home/rUBot_tutorial_ws
 catkin_make
-source ~/Desktop/rUBot_tutorial_ws/devel/setup.bash
 ```
-### **ROS Publishers and Subscribers**
+### **4.1. ROS Publishers and Subscribers**
 
 In order to generate a node to Publish and/or Subscribe in a topic/s, we can create a python file in script folder in "ros_basics" package.
 
@@ -326,7 +325,7 @@ rqt_graph
 ![](./Images/2_PubSub_4.png)
 ![](./Images/2_counter2.png)
 
-## **Exercise**
+### **Exercise**
 Let's program 2 ping-pong nodes according to this graph, with the functionality:
 - ping_node publish a word every 1s
 - if this word is "Ping", pong_node that is subscribing the ping topic answers "Pong" in other case answers "Failed!"
