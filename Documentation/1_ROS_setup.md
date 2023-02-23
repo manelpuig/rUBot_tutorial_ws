@@ -46,7 +46,7 @@ For graphical interface, open Xlaunch:
 For graphical interface in Mac os X:
  - Install last version of XQuartz.
  - Open preferences and in Security mark allow connections from network clients
- - In a new terminal on your local machine add localhost in xhost: > `xhost + 127.0.0.1
+ - In a new terminal on your local machine add localhost in xhost: > xhost + 127.0.0.1
 
 ### **1.3. VS Code**
 
