@@ -26,12 +26,16 @@ Official images are:
 
 ```shell
 docker pull osrf/ros:noetic-desktop-full
+or
+docker pull osrf/ros:humble-desktop-full
 ```
 
 To create a Container (choose proper name) with GUI and folder share (select your src absolute location), open a terminal and type:
 
 ```shell
 docker run --name ROS1_Noetic_osrf -e DISPLAY=host.docker.internal:0.0 --mount src="C:\Users\puigm\Desktop\ROS_github\myPC_shared",dst=/home/myDocker_shared,type=bind -it osrf/ros:noetic-desktop-full
+or
+docker run --name ROS2_Humble_osrf -e DISPLAY=host.docker.internal:0.0 --mount src="C:\Users\puigm\Desktop\ROS_github\myPC_shared",dst=/home/myDocker_shared,type=bind -it osrf/ros:humble-desktop-full
 ```
 
 ### **1.2. XLaunch**
