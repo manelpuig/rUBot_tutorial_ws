@@ -1,9 +1,20 @@
-# **ROS environment setup**
+# **1. ROS environment setup**
 
-First of all we will learn how to install the ROS Noetic in your computer from a Docker utility. This is the best usefull way to work with ROS.
+First of all we will learn how to work within a ROS environment. You will have to choose between 2 possibilities:
+- use a free and opensource ROS environment. 
+- install the ROS Noetic in your computer from a Docker utility. 
 
+## **1.1 Free ROS environment**
 
-## **1. ROS Installation & Tools**
+You have available the ROS environment offered for free by some companies like "The Construct".
+
+You will need only a google navigator:
+- Open the link to this environment: https://app.theconstructsim.com/Home
+- Create an account with user and password 
+- In the section "Your Rosjects" you can create your custom environment
+- Open a "New Rosject"
+
+## **1.2 ROS Installation using Docker utility**
 
 You have to install:
 
@@ -17,7 +28,7 @@ You have to install:
 
 **c)** **Visual Studio Code** (https://code.visualstudio.com/)
 
-### **1.1 ROS1 Images**
+### **1.2.1 ROS1 Images**
 
 Official images are:
 
@@ -38,7 +49,7 @@ or
 docker run --name ROS2_Humble_osrf -e DISPLAY=host.docker.internal:0.0 --mount src="C:\Users\puigm\Desktop\ROS_github\myPC_shared",dst=/home/myDocker_shared,type=bind -it osrf/ros:humble-desktop-full
 ```
 
-### **1.2. XLaunch**
+### **1.2.2. XLaunch**
 
 For graphical interface, open Xlaunch:
 
@@ -52,7 +63,7 @@ For graphical interface in Mac os X:
  - Open preferences and in Security mark allow connections from network clients
  - In a new terminal on your local machine add localhost in xhost: > xhost + 127.0.0.1
 
-### **1.3. VS Code**
+### **1.2.3. VS Code**
 
 We will use VS Code to sync a copy of your github repository **in your local PC**:
 
