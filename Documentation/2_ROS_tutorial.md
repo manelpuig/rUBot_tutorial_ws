@@ -51,6 +51,15 @@ A Node can register a specific service with the ROS Master, just as it registers
 
 ![](./Images/1_ros_nodes_camera_service.png)
 
+**Main benefits of ROS**
+- Create the **base layer** super fast
+- provide a **standard** for robotics applications
+- use on **any robot**
+- allows you to **avoid reinventing the wheel**
+- open source community
+- plug & play packages
+
+
 ## **3. ROS nodes and topics with Turtlesim**
 
 In order **to understand the ROS environment, with nodes, topics and communication** between nodes is very interesting to see the **Turtlesim exemple**.
