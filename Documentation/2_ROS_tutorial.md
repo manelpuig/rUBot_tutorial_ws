@@ -74,18 +74,18 @@ Be sure you have installed the turtlesim package and run it:
 roscore
 rosrun turtlesim turtlesim_node
 ```
-![](./Images/1_turtlesim1.png)
+![](./Images/2_Tutorial/5_turtlesim1.png)
 
 "turtlesim_node" is a node responsible to spawn the turtle in the blue board
 
-![](./Images/2_turtlesim_node.png)
+![](./Images/2_Tutorial/6_turtlesim_node.png)
 
 To **list the nodes and topics**, type:
 ```shell
 rosnode list
 rostopic list
 ```
-![](./Images/1_turtlesim2.png)
+![](./Images/2_Tutorial/7_turtlesim2.png)
 
 To see the **information about the nodes, topics and messages**, type:
 
@@ -99,7 +99,7 @@ In order **to see the message structure**, type:
 rosmsg show geometry_msgs/Twist
 rosmsg show turtlesim/Pose 
 ```
-![](./Images/1_turtlesim6.png)
+![](./Images/2_Tutorial/8_turtlesim6.png)
 
 you can also find the message structure in google: http://docs.ros.org/melodic/api/geometry_msgs/html/msg/Twist.html
 
@@ -110,13 +110,13 @@ In order **to write a message to a topic** we have different options:
 rostopic pub -r 1 /turtle1/cmd_vel geometry_msgs/Twist '[2, 0, 0]' '[0, 0, 2]'
 ```
 
-![](./Images/1_turtlesim7.png)
+![](./Images/2_Tutorial/9_turtlesim7.png)
 
 - or we can write a node to **use the keyboard arrows** to generate and publish the cmd_vel messages to the /cmd_vel topic:
 ```shell
 rosrun turtlesim turtle_teleop_key
 ```
-![](./Images/1_turtlesim3.png)
+![](./Images/2_Tutorial/10_turtlesim3.png)
 
 "turtle_teleop_key" is another node responsible to comand and move the turtle.
 
@@ -133,9 +133,9 @@ rqt_graph
 rqt_plot
 ```
 
-![](./Images/1_turtlesim4.png)
+![](./Images/2_Tutorial/11_turtlesim4.png)
 
-![](./Images/1_turtlesim8.png)
+![](./Images/2_Tutorial/12_turtlesim8.png)
 
 > Note in ROS for windows: you need to install graphviz and add to the PATH for all users, to properly see rqt_graph: https://graphviz.org/download/
 
