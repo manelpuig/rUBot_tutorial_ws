@@ -29,7 +29,7 @@ Let’s look at the **ROS system from a very high level view**. No need to worry
 
 ROS starts with the **ROS Master**. The Master allows all other ROS pieces of software **(Nodes) to find and talk to each other**. That way, we do not have to ever specifically state “Send this sensor data to that computer at 127.0.0.1". We can simply tell Node 1 to send messages to Node 2.
 
-![](./Images/1_ros_nodes.png)
+![](./Images/2_Tutorial/1_ros_nodes.png)
 
 How do Nodes do this? The **communication is ensured by publishing and subscribing messages to Topics**.
 
@@ -37,19 +37,19 @@ Let’s say we have a camera on our Robot. We want to be able to see the images 
 
 **In our example**, we have a **Camera Node that takes care of communication with the camera**, a **Image Processing Node, the communication with the robot** that process image data, and a **Image Display Node that displays images on a laptop screen**. To start with, all Nodes have registered with the Master. Think of the Master as a lookup table where all the nodes go to find where exactly to send messages.
 
-![](./Images/1_ros_nodes_camera.png)
+![](./Images/2_Tutorial/2_ros_nodes_camera.png)
 
 In **registering with the ROS Master**, the **Camera Node can Publish Images in a Topic called /image_data** (for example). Both of the **other Nodes can Subscribe to the Topic /image_data to read the images**.
 
 Thus, **once the Camera Node receives some data from the Camera, it sends the /image_data message directly to the other two nodes**. (Through what is essentially TCP/IP)
 
-![](./Images/1_ros_nodes_camera2.png)
+![](./Images/2_Tutorial/3_ros_nodes_camera2.png)
 
 Now you may be thinking, what if I want the Image Processing Node to request data from the Camera Node at a specific time? To do this, ROS implements Services.
 
 A Node can register a specific service with the ROS Master, just as it registers its messages. In the below example, the Image Processing Node first requests /image_data, the Camera Node takes data from the Camera, and then sends the reply.
 
-![](./Images/1_ros_nodes_camera_service.png)
+![](./Images/2_Tutorial/4_ros_nodes_camera_service.png)
 
 **Main benefits of ROS**
 - Create the **base layer** super fast

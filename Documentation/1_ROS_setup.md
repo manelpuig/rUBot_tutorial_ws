@@ -51,27 +51,30 @@ docker run --name ROS2_Humble_osrf -e DISPLAY=host.docker.internal:0.0 --mount s
 
 ### **1.2.2. XLaunch**
 
-For graphical interface, open Xlaunch:
+For graphical interface, in **windows** open Xlaunch:
 
 - First choose “Multiple windows” and set to 0 the "Display number”
 - Then, set “Start no client” in the second screen
 - In the third screen, click “Clipboard” and "Primary Selection", unclick "Native opengl" and click "Disable access control"
 - And just click “Finalize” in the last screen
 
-For graphical interface in Mac os X:
- - Install last version of XQuartz.
- - Open preferences and in Security mark allow connections from network clients
- - In a new terminal on your local machine add localhost in xhost: > xhost + 127.0.0.1
+For graphical interface in **Mac os**:
+To forward X11 GUI applications from a Docker container to a macOS host, you can follow these steps:
+ - Install last version of XQuartz (https://www.xquartz.org/)
+ - Go to "Preferences" > "Security" and make sure the "Allow connections from network clients" option is enabled.
+ - enable X11 forwarding and provide the necessary environment variables:
+ ```shell
+ docker run -e DISPLAY=host.docker.internal:0 --net=host -it --rm ubuntu xeyes
+```
+Once the container is running, you can launch GUI applications from the container's command line, and they should appear on the macOS host's XQuartz server.
 
 ### **1.2.3. VS Code**
 
-We will use VS Code to sync a copy of your github repository **in your local PC**:
+We will use VS Code to sync a copy of your github repository.
 
-- Open VS Code and choose "Clone repository"
-- type the github link of the desired repository
-- select the local destination folder
+- Install VS Code following instructions in document "InstallCode.doc"
 
-We will also use VS Code to work and sync the changes we have made **in Docker Container**:
+a) If you are using **Docker**:
 
 - Run the docker container
 - Open Visual Studio Code and Install the extensions:
@@ -88,10 +91,7 @@ We will also use VS Code to work and sync the changes we have made **in Docker C
 - Update your docker Container:
 ```shell
 apt update
-apt upgrade
 ```
-
-> repeat these instructions until you see "All packages are up to date"
 
 Install some functionalities you will need:
 
@@ -99,9 +99,17 @@ Install some functionalities you will need:
 apt install -y git && apt install -y python3-pip
 ```
 - Re-start the container
+
+b) If you are using **Ubuntu virtual machine with Virtual Box**:
+- Install the VSCode 
+- Sincronisation is made inside Ubuntu with VSCode
+
+c) If you are using **3th party ROS environment like TheConstruct**:
+- VSCode is already installed
+
 ## **2. Prepare your Workspace**
 
-Once you are in the ROS Noetic container, you can:
+Once you are in the ROS Noetic environment, you can:
 
 - create your own workspace
 - Use an existing workspace
@@ -124,7 +132,7 @@ You can also use our repository and make your modifications according to the exe
 In that case, you can follow the instructions:
 
 - Fork the "rubot_tutorial_ws" repository from my github
-  ![](./Images/1_fork.png)
+  ![](./Images/1_Setup/1_fork.png)
 - Open your Docker container with ROS Noetic
 - Using VS Code, connect to the ROS1_Noetic running container
 - Clone your forked directory in your home directory of container
@@ -156,8 +164,8 @@ In that case, you can follow the instructions:
 - Add a commit
 - Push
 
-**In your local PC**, you need:
+**In your Ubuntu virtual machine**, you need:
 - Within VS Code: you need to do the same.
-- Alternativelly you could:
-    - Use github web editor
-    - use github Desktop
+
+Alternativelly you could use github web editor
+
