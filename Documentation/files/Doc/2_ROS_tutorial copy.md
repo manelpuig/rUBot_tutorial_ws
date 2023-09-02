@@ -160,7 +160,7 @@ The information could be obtained in: https://wiki.ros.org/ROS/Tutorials/Writing
 
 Let's see it with some exemples:
 
-### **Talker-Listener exemple**
+## **Talker-Listener exemple**
 
 In this "talker-listener" exemple, we will show first graphically a "talker" and "listener" nodes, a "chatter" topic and the String type messages created for communication purposes:
 
@@ -226,15 +226,66 @@ rosrun ros_basics listener.py
 ```
 
 
-### **Counter exemple**
-In this exercise, we develop python scripts to perform the following functionalities:
+### **Exercise: Doubled**
+Create a "doubler" node that:
+- subscribes to a /number topic
+- calculates the double of the number read in /number topic
+- publishes the result in /doubled topic
+
+![](./Images/2_PubSub_2.png)
+The python code is represented in "doubler.py"
+```python
+#!/usr/bin/env python3
+import rospy
+from std_msgs.msg import Int32
+
+def callback(msg):
+    doubled = Int32()
+    doubled.data = msg.data * 2
+    pub.publish(doubled)
+
+rospy.init_node('doubler')
+sub = rospy.Subscriber('number', Int32, callback)
+pub = rospy.Publisher('doubled', Int32, queue_size=10)
+rospy.spin()
+```
+Carefull!:
+Be sure that the python editor has "End of Line sequence" selected to LF (right-bottom section in VS Code)
+
+To verify the program, we have to publish a number in /number topic and subscibe to the /doubled topic using different terminals:
+```shell
+roscore
+rosrun ros_basics doubler.py
+rostopic echo /doubled
+rostopic pub /number std_msgs/Int32 2
+rqt_graph
+```
+With ROS_windows you need to create a "counter.launch" file to properly run the application:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <node pkg="ros_basics" type="doubler.py" name="doubler" output="screen" />
+</launch>
+```
+Type:
+```shell
+roslaunch ros_basics doubler.launch
+rostopic echo /doubled
+rostopic pub /number std_msgs/Int32 2
+rqt_graph
+```
+![](./Images/03_Doubled1.png)
+![](./Images/03_Doubled2.png)
+
+### **Exercise: Counter**
+In this exercise, we develop python scripts to perform the following functionalities.
 - Publish a number every 1s
-- Read this number, add with the previous one and publish the result
+- Read this number, adds with the previous one and publishes the result
 
 Graphically is represented by:
-![](./Images/2_Tutorial/13_PubSub_3.png)
+![](./Images/2_PubSub_3.png)
 
-Create in  the "script" folder the python file "number_publisher.py" for the **Publiser node**:
+Create in  the "script" folder the python file "publisher_num.py" for the Publiser:
 ```python
 #!/usr/bin/env python3
 import rospy
@@ -250,9 +301,9 @@ while not rospy.is_shutdown():
 	pub.publish(msg)
 	rate.sleep()
 ```
-Do not forget to make the file executable: chmod +x number_publisher.py
+Do not forget to make the file executable: chmod +x Publisher_num.py
 
-In "script" folder create the python file "number_counter.py" for the **Publiser/Subscriber node**:
+In "script" folder create the python file "pubsub_counter.py" for the Publiser/Subscriber:
 ```python
 #!/usr/bin/env python3
 import rospy
