@@ -25,19 +25,23 @@ def move_turtle(lin_vel,ang_vel,distance):
         vel.angular.x = 0
         vel.angular.y = 0
         vel.angular.z = ang_vel
- 
-        if(robot_x >= distance):
+        
+        if robot_x >= distance:
             rospy.loginfo("Robot Reached destination")
             rospy.logwarn("Stopping robot")
+            vel.linear.x = 0
+            vel.angular.z = 0
+            pub.publish(vel)
+            #rospy.on_shutdown(myhook)
             break
-        pub.publish(vel)
-        rate.sleep()
+        else:
+            pub.publish(vel)
+            rate.sleep()
+def myhook():
+    print ("shutdown time!")           
 
 if __name__ == '__main__':
     try:
-        v= rospy.get_param('v')
-        w= rospy.get_param('w')
-        d= rospy.get_param('d')
-        move_turtle(v,w,d)
+        move_turtle(float(sys.argv[1]),float(sys.argv[2]),float(sys.argv[3]))
     except rospy.ROSInterruptException:
         pass

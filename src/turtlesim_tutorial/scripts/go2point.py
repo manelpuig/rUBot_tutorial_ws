@@ -10,7 +10,7 @@ class TurtleBot:
     def __init__(self):
         # Creates a node with name 'turtlebot_controller' and make sure it is a
         # unique node (using anonymous=True).
-        rospy.init_node('turtlebot_controller', anonymous=True)
+        rospy.init_node('move_turtlel', anonymous=True)
 
         # Publisher which will publish to the topic '/turtle1/cmd_vel'.
         self.velocity_publisher = rospy.Publisher('/turtle1/cmd_vel',
@@ -22,6 +22,9 @@ class TurtleBot:
                                                 Pose, self.update_pose)
 
         self.pose = Pose()
+        self.goal_pose.x = rospy.get_param("~x")
+        self.goal_pose.y = rospy.get_param("~y")
+        self.distance_tolerance = rospy.get_param("~tol")
         self.rate = rospy.Rate(10)
 
     def update_pose(self, data):
@@ -53,11 +56,11 @@ class TurtleBot:
         goal_pose = Pose()
 
         # Get the input from the user.
-        goal_pose.x = float(input("Set your x goal: "))
-        goal_pose.y = float(input("Set your y goal: "))
+        goal_pose.x = self.goal_pose.x
+        goal_pose.y = self.goal_pose.y
 
         # Please, insert a number slightly greater than 0 (e.g. 0.01).
-        distance_tolerance = float(input("Set your tolerance: "))
+        distance_tolerance = self.distance_tolerance
 
         vel_msg = Twist()
 
@@ -92,7 +95,7 @@ class TurtleBot:
 
 if __name__ == '__main__':
     try:
-        x = TurtleBot()
-        x.move2goal()
+        turtle = TurtleBot()
+        turtle.move2goal()
     except rospy.ROSInterruptException:
         pass

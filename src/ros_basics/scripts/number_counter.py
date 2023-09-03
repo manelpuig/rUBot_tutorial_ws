@@ -12,7 +12,11 @@ def callback_number(msg):
 	pub.publish(new_msg)
 	rospy.loginfo("I Publish the counter value: %s", counter)
 
-rospy.init_node('number_counter')
-pub = rospy.Publisher("/number_count", Int64, queue_size=10)
-sub = rospy.Subscriber("/number", Int64, callback_number)
-rospy.spin()
+def number_counter():
+    rospy.init_node('number_counter')
+    pub = rospy.Publisher("/number_count", Int64, queue_size=10)
+    sub = rospy.Subscriber("/number", Int64, callback_number)
+    rospy.spin()
+
+if __name__ == '__main__':
+    number_counter()

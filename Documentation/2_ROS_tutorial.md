@@ -240,7 +240,7 @@ Create in  the "script" folder the python file "number_publisher.py" for the **P
 import rospy
 from std_msgs.msg import Int64
 
-def talker():
+def number_publisher():
     rospy.init_node("number_publisher", anonymous=True)
     pub = rospy.Publisher("/number", Int64, queue_size=10)
     rate = rospy.Rate(1)
@@ -253,7 +253,7 @@ def talker():
 
 if __name__ == '__main__':
     try:
-        talker()
+        number_publisher()
     except rospy.ROSInterruptException:
         pass
 ```
@@ -279,14 +279,14 @@ def callback_number(msg):
 	pub.publish(new_msg)
 	rospy.loginfo("I Publish the counter value: %s", counter)
 
-def listener():
+def number_counter():
     rospy.init_node('number_counter')
     pub = rospy.Publisher("/number_count", Int64, queue_size=10)
     sub = rospy.Subscriber("/number", Int64, callback_number)
     rospy.spin()
 
 if __name__ == '__main__':
-    listener()
+    number_counter()
 ```
 Do not forget to make the file executable: 
 ```shell

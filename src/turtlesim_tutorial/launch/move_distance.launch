@@ -4,9 +4,11 @@
     <arg name="v" default="0.7"/>
     <arg name="w" default="0"/>
     <arg name="d" default="7"/>
-    <param name="v" value="$(arg v)"/>
-    <param name="w" value="$(arg w)"/>
-    <param name="d" value="$(arg d)"/>
+    
     <node pkg="turtlesim" type="turtlesim_node" name="turtlesim_node"/>
-    <node pkg="turtlesim_tutorial" type="move_distance_params.py" name="move_turtle" output="screen" />
+    <node pkg="turtlesim_tutorial" type="move_distance.py" name="move_turtle" output="screen" >
+        <param name="v" value="$(arg v)"/>
+        <param name="w" value="$(arg w)"/>
+        <param name="d" value="$(arg d)"/>
+    </node>
 </launch>

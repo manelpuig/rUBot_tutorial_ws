@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <launch>
+    <arg name="x" default="0.7"/>
+    <arg name="y" default="0"/>
+    <arg name="tol" default="0.1"/>
+    
     <node pkg="turtlesim" type="turtlesim_node" name="turtlesim_node"/>
-    <node pkg="turtlesim_tutorial" type="go2point.py" name="turtlebot_controller" output="screen" />
+    <node pkg="turtlesim_tutorial" type="go2point.py" name="move_turtle" output="screen" >
+        <param name="x" value="$(arg x)"/>
+        <param name="y" value="$(arg y)"/>
+        <param name="tol" value="$(arg tol)"/>
+    </node>
 </launch>
