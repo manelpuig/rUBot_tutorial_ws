@@ -227,9 +227,9 @@ rosrun ros_basics listener.py
 
 
 ### **Counter exemple**
-In this exercise, we develop python scripts to perform the following functionalities:
-- Publish a number every 1s
-- Read this number, add with the previous one and publish the result
+In this exemple, we will create 2 nodes to perform the following functionalities:
+- The first node Publish a number every 1s
+- The second node Read this number, add with the previous one and publish the result
 
 Graphically is represented by:
 ![](./Images/2_Tutorial/13_PubSub_3.png)
@@ -240,17 +240,28 @@ Create in  the "script" folder the python file "number_publisher.py" for the **P
 import rospy
 from std_msgs.msg import Int64
 
-rospy.init_node("number_publisher", anonymous=True)
-pub = rospy.Publisher("/number", Int64, queue_size=10)
-rate = rospy.Rate(1)
+def talker():
+    rospy.init_node("number_publisher", anonymous=True)
+    pub = rospy.Publisher("/number", Int64, queue_size=10)
+    rate = rospy.Rate(1)
 
-while not rospy.is_shutdown():
-	msg = Int64()
-	msg.data = 2
-	pub.publish(msg)
-	rate.sleep()
+    while not rospy.is_shutdown():
+        msg = Int64()
+        msg.data = 2
+        pub.publish(msg)
+        rate.sleep()
+
+if __name__ == '__main__':
+    try:
+        talker()
+    except rospy.ROSInterruptException:
+        pass
 ```
-Do not forget to make the file executable: chmod +x number_publisher.py
+Do not forget to make the file executable: 
+```shell
+cd ros_basics/scripts
+chmod +x number_publisher.py
+```
 
 In "script" folder create the python file "number_counter.py" for the **Publiser/Subscriber node**:
 ```python
@@ -268,13 +279,20 @@ def callback_number(msg):
 	pub.publish(new_msg)
 	rospy.loginfo("I Publish the counter value: %s", counter)
 
-rospy.init_node('number_counter')
-pub = rospy.Publisher("/number_count", Int64, queue_size=10)
-sub = rospy.Subscriber("/number", Int64, callback_number)
-rospy.spin()
+def listener():
+    rospy.init_node('number_counter')
+    pub = rospy.Publisher("/number_count", Int64, queue_size=10)
+    sub = rospy.Subscriber("/number", Int64, callback_number)
+    rospy.spin()
+
+if __name__ == '__main__':
+    listener()
 ```
 Do not forget to make the file executable: 
-- chmod +x pubsub_counter.py
+```shell
+cd ros_basics/scripts
+chmod +x number_counter.py
+```
 
 These python scripts can be adapted to the desired control functions.
 
@@ -283,27 +301,29 @@ To properly run the ROS application, create a launch folder containing the "coun
 <?xml version="1.0" encoding="UTF-8"?>
 
 <launch>
-    <node pkg="ros_basics" type="publisher_num.py" name="number_publisher"/>
-    <node pkg="ros_basics" type="pubsub_counter.py" name="number_counter" output="screen" />
+    <node pkg="ros_basics" type="number_publisher.py" name="number_publisher"/>
+    <node pkg="ros_basics" type="number_counter.py" name="number_counter" output="screen" />
 </launch>
 ```
 To launch the exercise, type:
 ```shell
+cd ros_basics
 roslaunch ros_basics counter.launch
 rqt_graph
 ```
-![](./Images/2_PubSub_4.png)
-![](./Images/2_counter2.png)
+![](./Images/2_Tutorial/14_PubSub_4.png)
+![](./Images/2_Tutorial/15_counter2.png)
 
 ### **Exercise**
 Let's program 2 ping-pong nodes according to this graph, with the functionality:
 - ping_node publish a word every 1s
-- if this word is "Ping", pong_node that is subscribing the ping topic answers "Pong" in other case answers "Failed!"
+- pong_node that is subscribing the ping topic
+- if ping-node publish "Ping" then pong-node answers "Pong" in other case answers "Failed!"
 
-![](./Images/2_ping_pong.png)
+![](./Images/2_Tutorial/16_ping_pong.png)
 
 To verify the ping-pong program, type:
 ```shell
 roslaunch ros_basics ping_pong.launch
 ```
-![](./Images/2_ping_pong_out.png)
+![](./Images/2_Tutorial/17_ping_pong_out.png)
