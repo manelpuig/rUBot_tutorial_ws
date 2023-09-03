@@ -13,7 +13,6 @@ def pose_callback(pose):
 
 def move_turtle(lin_vel,ang_vel,distance):
     global robot_x
-    rospy.init_node('move_turtle', anonymous=False)
     pub = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
     rospy.Subscriber('/turtle1/pose',Pose, pose_callback)
     rate = rospy.Rate(10) # 10hz
@@ -35,9 +34,10 @@ def move_turtle(lin_vel,ang_vel,distance):
 
 if __name__ == '__main__':
     try:
-        v= rospy.get_param('~v')
-        w= rospy.get_param('~w')
-        d= rospy.get_param('~d')
+        rospy.init_node('move_turtle', anonymous=False)#Has to be called here at the begining!
+        v= rospy.get_param("~v")
+        w= rospy.get_param("~w")
+        d= rospy.get_param("~d")
         move_turtle(v,w,d)
     except rospy.ROSInterruptException:
         pass

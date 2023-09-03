@@ -10,7 +10,7 @@ class TurtleBot:
     def __init__(self):
         # Creates a node with name 'turtlebot_controller' and make sure it is a
         # unique node (using anonymous=True).
-        rospy.init_node('move_turtlel', anonymous=True)
+        rospy.init_node('move_turtle', anonymous=True)
 
         # Publisher which will publish to the topic '/turtle1/cmd_vel'.
         self.velocity_publisher = rospy.Publisher('/turtle1/cmd_vel',
@@ -22,6 +22,7 @@ class TurtleBot:
                                                 Pose, self.update_pose)
 
         self.pose = Pose()
+        self.goal_pose = Pose()
         self.goal_pose.x = rospy.get_param("~x")
         self.goal_pose.y = rospy.get_param("~y")
         self.distance_tolerance = rospy.get_param("~tol")
@@ -89,6 +90,8 @@ class TurtleBot:
         vel_msg.linear.x = 0
         vel_msg.angular.z = 0
         self.velocity_publisher.publish(vel_msg)
+        rospy.loginfo("Robot Reached destination")
+        rospy.logwarn("Stopping robot")
 
         # If we press control + C, the node will stop.
         rospy.spin()

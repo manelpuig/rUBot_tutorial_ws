@@ -55,10 +55,9 @@ Create in "launch" folder a launch file "move_distance.launch" to run all nodes:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <arg name="v" default="0.7"/>
-    <arg name="w" default="0"/>
-    <arg name="d" default="7"/>
-    
+        <arg name="v" default="0.5"/>
+        <arg name="w" default="0"/>
+        <arg name="d" default="7"/>
     <node pkg="turtlesim" type="turtlesim_node" name="turtlesim_node"/>
     <node pkg="turtlesim_tutorial" type="move_distance.py" name="move_turtle" output="screen" >
         <param name="v" value="$(arg v)"/>
@@ -100,10 +99,9 @@ Create a "go2point.launch" launch file to setup all needed nodes:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <arg name="x" default="1"/>
-    <arg name="y" default="1"/>
-    <arg name="tol" default="0.1"/>
-    
+        <arg name="x" default="1"/>
+        <arg name="y" default="1"/>
+        <arg name="tol" default="0.1"/>
     <node pkg="turtlesim" type="turtlesim_node" name="turtlesim_node"/>
     <node pkg="turtlesim_tutorial" type="go2point.py" name="move_turtle" output="screen" >
         <param name="x" value="$(arg x)"/>
