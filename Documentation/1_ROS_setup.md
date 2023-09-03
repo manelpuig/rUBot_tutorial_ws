@@ -187,6 +187,7 @@ In that case, you can follow the instructions:
   cd /home/rUBot_tutorial_ws
   catkin_make
   ```
+> Some environments have /home/user/ instead of /home
 - You are ready to work with your repository for this session
 
 ## **2.3. Repository syncronisation**

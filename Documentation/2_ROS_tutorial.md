@@ -219,8 +219,9 @@ if __name__ == '__main__':
     listener()
 ```
 To **execute** this exemple:
-- Open 2 new terminals and execute one node in each terminal:
+- Open 3 new terminals and execute one node in each terminal:
 ```shell
+roscore
 rosrun ros_basics talker.py
 rosrun ros_basics listener.py
 ```
