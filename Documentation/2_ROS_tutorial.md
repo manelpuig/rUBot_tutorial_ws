@@ -27,8 +27,8 @@ Its development started at **Willow Garage**, a technology incubator and robotic
 ## **2. ROS General Concepts**
 
 Let’s look at the **ROS system from a very high level view**:
-
-- ROS starts with the **ROS Master**. The Master allows all other ROS pieces of software **(Nodes) to find and talk to each other**. We can simply tell Node 1 to send messages to Node 2.
+- First of all we structure a large program into small pieces of code. These pieces of code are called **"nodes"**.
+- ROS starts with the **ROS Master** node. The Master allows all other ROS **Nodes to find and talk to each other**. We can simply tell Node 1 to send messages to Node 2.
 
 ![](./Images/2_Tutorial/01_ros_nodes.png)
 
