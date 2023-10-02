@@ -16,8 +16,7 @@ https://bitbucket.org/theconstructcore/workspace/projects/
 
 **Robot Operating System (ROS)** is an open source software environment used worldwide to program in robotics. 
 
-Its development started at **Willow Garage**, a technology incubator and robotics research laboratory in Stanford University. 
-- Its origin dates back to several projects at Stanford University from the mid-2000s, where researchers found themselves reinventing the wheel every time they had to build the software for each project. 
+Its development started at **Willow Garage**, a technology incubator and robotics research laboratory in Stanford University.  
 - In **2007**, Willow Garage **starts ROS environment development**. The main goal was to **reuse existing code** and make it possible to **prototype new robot designs quickly**, focusing on high-level functionality and minimizing the need for editing code.
 - ROS is useful for **applications where different devices have to talk to each other** in order to create a flexible and scalable environment.
 - A **ROS system** is comprised of a number of independent **nodes**, each of which **communicates** with the other nodes using a **publish/subscribe messaging model**. For example, a particular sensor’s driver might be implemented as a node, which publishes sensor data in a stream of messages. These messages could be consumed by any number of other nodes (loggers, and also higher-level systems such as guidance, pathfinding, etc.)

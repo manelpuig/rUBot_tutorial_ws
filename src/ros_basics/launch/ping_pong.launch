@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <launch>
-    <node pkg="ros_basics" type="ping.py" name="ping_node"/>
-    <node pkg="ros_basics" type="pong.py" name="pong_node" output="screen" />
+    <node pkg="ros_basics" type="ping1.py" name="ping_node"/>
+    <node pkg="ros_basics" type="pong1.py" name="pong_node" output="screen" />
 </launch>

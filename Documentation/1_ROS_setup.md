@@ -174,12 +174,12 @@ In that case, you can follow the instructions:
   ```shell
   git clone https://github.com/yourusername/rUBot_tutorial_ws
   ```
-- Open .bashrc file (from root) with VS Code (open file...)
+- Open .bashrc file (from user) with VS Code (open file...)
 - Ensure that you have the last 2 lines (review the exact name of your repository):
 
   ```xml
   source /opt/ros/noetic/setup.bash
-  source /home/rUBot_tutorial_ws/devel/setup.bash
+  source /home/user/rUBot_tutorial_ws/devel/setup.bash
   ```
 - open a new terminal and Compile:
 
