@@ -25,7 +25,7 @@ This is performed following the tutorial:
 
 ![](./Images/3_Turtlesim/01_move_turtle.png)
 
-We remind you how to create a "turtlesim_tutorial" package with dependencies (rospy, geometry_msgs, turtlesim)
+The package is already created, but we remind you how to create a "turtlesim_tutorial" package with dependencies (rospy, geometry_msgs, turtlesim)
 
 In src directory:
 ```shell
@@ -51,7 +51,7 @@ Develop a python script to perform the following functionalities.
 
 Create in "scripts" folder the python file "move_distance.py"
 
-Create in "launch" folder a launch file "move_distance.launch" to run all nodes:
+Create in "launch" folder a launch file "move_distance.launch" to run all nodes with speciffic useful parameters:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
@@ -80,20 +80,20 @@ Develop a ROS node to perform the following functionalities.
 - Specify a target point (x,y) with a tolerance for turtlesim to move
 - Read the Pose of turtlesim
 - if the turtlesim Position is far from the point, publish linear and angular speed
-- if is close within the tolerance, stop
+- if it is close within the tolerance, stops
 
 ![](./Images/3_Turtlesim/01_move_turtle.png)
 
 We can describe graphically how we will control the turtlesim:
 ![](./Images/3_Turtlesim/04_turtlesim_w.png)
 
-We can use **Object Oriented Programming**, creating a python Class and use input parameters to specify the target point and tolerance
+We can use **Object Oriented Programming**, creating a "TurtleBot" python Class and use input parameters to specify the target point and tolerance
 
 Object Oriented Programming (OOP) is everywhere in python. 
 - OOP is a way to organize your code into Classes. 
 - A Class a sort of container of objects with a set of attributes (variables/properties) and methods (functions)
 
-Create a "/move_turtle" node with go2point functionality.
+Create a "/move_turtle" node with go2point functionality. This is defined in the "go2point.py" python file.
 
 Create a "go2point.launch" launch file to setup all needed nodes:
 ```xml
@@ -116,13 +116,8 @@ roslaunch turtlesim_tutorial go2point.launch
 ```
 ![](./Images/3_Turtlesim/06_turtlesim_go2point1.png)
 
-### **Proposed Exercise 1: Move move during time interval with turtlesim**
-Create a new "move_time.py" node, modifying the "move_distance.py" node to:
-- Move with a generic twist vector
-- during a time interval
 
-
-### **Proposed Exercise 2: Go to Target position and orientation**
+### **Activity 2: ROS turtlesim go2pose**
 
 The objective is to reach the desired position with the proper orientation also.
 
@@ -130,3 +125,7 @@ Create a new "go2pose.py" node, modifying the "go2point.py" node to:
 - reach first the position 
 - and later the orientation
 
+### **Proposed Exercise: Move move during time interval with turtlesim**
+Create a new "move_time.py" node, modifying the "move_distance.py" node to:
+- Move with a generic twist vector
+- during a time interval

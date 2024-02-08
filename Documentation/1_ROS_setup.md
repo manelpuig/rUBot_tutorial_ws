@@ -138,10 +138,10 @@ You will have now a graphical interface working and faster than using XLaunch or
 You can always install a ROS virtual machine with Virtual Box for MAC
 - Download Virtual Box for windows/macOS systems (https://www.virtualbox.org/wiki/Downloads)
 - Install Virtual Box in your computer
-- Download the ROS virtual machine in this link:
-- and Add this ROS virtual machine choosing file-->Import appliance (and follow instructions)
+- Download the Ubuntu20 virtual machine in this link: https://releases.ubuntu.com/focal/
+- Follow instructions: https://github.com/sutd-robotics/virtualbox-ubuntu-ros/tree/main
 
-You will have a ready to use ROS environment
+You will have a ready to use ROS Noetic environment
 
 # **2. Prepare your Workspace**
 
@@ -167,7 +167,7 @@ This is the best option to learn ROS. You will create a new repository and you w
 You can also use our repository and make your modifications according to the exercises we will propose you.
 In that case, you can follow the instructions:
 
-- Fork the "rubot_tutorial_ws" repository from my github
+- Fork the "rUBot_tutorial_ws" repository from my github
   ![](./Images/1_Setup/08_fork.png)
 - Open your ROS Noetic environment
 - Clone your forked directory in your home directory of container
@@ -206,8 +206,8 @@ Syncronize the changes within VS Code:
 - When you will Push them, the first time you will be asked to link the repository to your github account:
 - Open a terminal in VS Code and type the first time:
 ```shell
-git config --global user.email mail@alumnes.ub.edu
-git config --global user.name 'your github username'
+git config --global user.email "mail@alumnes.ub.edu"
+git config --global user.name "your github username"
 ```
 - for succesive times, you only need to select changes, Commit a message and Push
 

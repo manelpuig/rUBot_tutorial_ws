@@ -19,7 +19,7 @@ https://bitbucket.org/theconstructcore/workspace/projects/
 Its development started at **Willow Garage**, a technology incubator and robotics research laboratory in Stanford University.  
 - In **2007**, Willow Garage **starts ROS environment development**. The main goal was to **reuse existing code** and make it possible to **prototype new robot designs quickly**, focusing on high-level functionality and minimizing the need for editing code.
 - ROS is useful for **applications where different devices have to talk to each other** in order to create a flexible and scalable environment.
-- A **ROS system** is comprised of a number of independent **nodes**, each of which **communicates** with the other nodes using a **publish/subscribe messaging model**. For example, a particular sensor’s driver might be implemented as a node, which publishes sensor data in a stream of messages. These messages could be consumed by any number of other nodes (loggers, and also higher-level systems such as guidance, pathfinding, etc.)
+- A **ROS system** is comprised of a number of independent **nodes**, each of which **communicates** with the other nodes using a **publish/subscribe messaging model**. For example, a particular sensor’s driver might be implemented as a node, which publishes sensor data in a stream of messages. These messages could be consumed by any number of other nodes (loggers, and also higher-level systems such as robot navigation node, robot localization node, etc.)
 - Note that **nodes in ROS** do not have to be on the same system (multiple computers) or even of the same architecture! You **could have a Arduino publishing messages, a laptop subscribing to them, and an Android phone publishing messages to drive a motor or switch a light**. This makes ROS really flexible and adaptable to the needs of the user. 
 - **ROS is also open source, maintained by many people**.
 
@@ -27,24 +27,24 @@ Its development started at **Willow Garage**, a technology incubator and robotic
 
 Let’s look at the **ROS system from a very high level view**:
 - First of all we structure a large program into small pieces of code. These pieces of code are called **"nodes"**.
-- ROS starts with the **ROS Master** node. The Master allows all other ROS **Nodes to find and talk to each other**. We can simply tell Node 1 to send messages to Node 2.
+- ROS starts with the **ROS Master** node. The Master allows all other ROS **Nodes to find and talk to each other**. 
 
 ![](./Images/2_Tutorial/01_ros_nodes.png)
 
 - The **communication is ensured by publishing and subscribing messages to Topics**.
 
 - **In our example**, we have:
-    - a **Camera Node**, that communicates with the camera to obtain images, 
-    - an **Image Processing Node**, that process image data, 
-    - and an **Image Display Node** that displays images on a laptop screen. 
+    - a **Camera Node**, communicates with the camera to obtain images, 
+    - an **Image Processing Node**, process image data, 
+    - and an **Image Display Node** displays images on a laptop screen. 
 
 - To start with, all **Nodes have registered with the Master**. Think of the Master as a lookup table where all the nodes go to find where exactly to send messages.
 
 ![](./Images/2_Tutorial/02_ros_nodes_camera.png)
 
 - When **registering with the ROS Master**:
-    - the **Camera Node can Publish the received Images in a Topic called /image_data**
-    - Both of the **other Nodes can Subscribe to the Topic /image_data to read the images**.
+    - the **Camera Node can Publish the received Images as a Message in a Topic called /image_data**
+    - Both of the **other Nodes can Subscribe to the Topic /image_data to read the Message with the images of the Camera**.
 
 ![](./Images/2_Tutorial/03_ros_nodes_camera2.png)
 
@@ -144,7 +144,7 @@ For this first course in ROS, all the needed packages are already created.
 
 The procedure followed to create a package, its syntax and all the information is described in: http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29
 
-The needed steps to create a "**ros_basics**" package are:
+We summarise here the needed steps to create a "**ros_basics**" package:
 ```shell
 cd /home/rUBot_tutorial_ws/src
 catkin_create_pkg ros_basics std_msgs rospy
@@ -307,14 +307,14 @@ To properly run the ROS application, create a launch folder containing the "coun
 ```
 To launch the exercise, type:
 ```shell
-cd ros_basics
+cd rUBot_tutorial_ws
 roslaunch ros_basics counter.launch
 rqt_graph
 ```
 ![](./Images/2_Tutorial/14_PubSub_4.png)
 ![](./Images/2_Tutorial/15_counter2.png)
 
-### **Exercise**
+### **Activity 1: ROS Ping-Pong**
 Let's program 2 ping-pong nodes according to this graph, with the functionality:
 - ping_node publish a word every 1s
 - pong_node that is subscribing the ping topic
