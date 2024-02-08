@@ -169,10 +169,13 @@ In that case, you can follow the instructions:
 
 - Fork the "rUBot_tutorial_ws" repository from my github
   ![](./Images/1_Setup/08_fork.png)
-- Open your ROS Noetic environment
+- Open your ROS Noetic environment:  https://app.theconstructsim.com/
 - Clone your forked directory in your home directory of container
   ```shell
+  cd /home/user
   git clone https://github.com/yourusername/rUBot_tutorial_ws
+  cd rUBot_tutorial_ws
+  catkin_make
   ```
 - Open .bashrc file (from user) with VS Code (open file...)
 - Ensure that you have the last 2 lines (review the exact name of your repository):
@@ -181,14 +184,7 @@ In that case, you can follow the instructions:
   source /opt/ros/noetic/setup.bash
   source /home/user/rUBot_tutorial_ws/devel/setup.bash
   ```
-- open a new terminal and Compile:
-
-  ```shell
-  cd /home/rUBot_tutorial_ws
-  catkin_make
-  ```
-> Some environments have /home/user/ instead of /home
-- You are ready to work with your repository for this session
+You are ready to work with your repository for this session!
 
 ## **2.3. Repository syncronisation**
 
