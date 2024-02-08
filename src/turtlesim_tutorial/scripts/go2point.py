@@ -8,7 +8,7 @@ from math import pow, atan2, sqrt
 class TurtleBot:
 
     def __init__(self):
-        # Creates a node with name 'turtlebot_controller' and make sure it is a
+        # Creates a node with name 'move_turtle' and make sure it is a
         # unique node (using anonymous=True).
         rospy.init_node('move_turtle', anonymous=True)
 

@@ -85,6 +85,7 @@ Develop a ROS node to perform the following functionalities.
 ![](./Images/3_Turtlesim/01_move_turtle.png)
 
 We can describe graphically how we will control the turtlesim:
+
 ![](./Images/3_Turtlesim/04_turtlesim_w.png)
 
 We can use **Object Oriented Programming**, creating a "TurtleBot" python Class and use input parameters to specify the target point and tolerance
