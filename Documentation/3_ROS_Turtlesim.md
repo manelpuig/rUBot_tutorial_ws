@@ -7,7 +7,7 @@ This is performed following the tutorial:
 - http://wiki.ros.org/turtlesim/Tutorials/Go%20to%20Goal
 - https://github.com/Apress/Robot-Operating-System-Abs-Begs
 
-## **Navigation control of Turtlesim**
+## **Control of Turtlesim**
 A specific package "turtlesim_tutorial" is created where different motion control programs will be done.
 
 The package is already created, but we remind you how to create a "turtlesim_tutorial" package with dependencies (rospy, geometry_msgs, turtlesim)
@@ -27,13 +27,7 @@ Let's perform different exercises to understand how to programm the motion contr
 
 ### **Exercise: Control turtlesim**
 
-Develop a python script to perform the following functionalities.
-- Specify a distance in x direction for turtlesim to move
-- Read the Pose of turtlesim
-- if the Pose.x is lower than the the distance specified, publish linear and angular speed
-- if the Pose.x is higher, then stop
-
-Within this package, a node "/move_turtle" can be created to communicate with the "/turtlesim" node.
+In this exercise, a node "/move_turtle" can be created to communicate with the "/turtlesim" node.
 
 This node "/move_turtle" created performs a speciffic motion control function:
 - publishes in the /turtle1/cmd_vel topic a message Twist
@@ -66,7 +60,7 @@ Develop a python script to perform the following functionalities.
 - node "/move_turtle":
     - subscribes to "/turtle1/Pose" topic to read the POSE message
     - if the Pose.x or Pose.y is lower than the distance specified, publish linear and angular speed
-    - if the Pose.x is higher, then stop
+    - if the Pose.x or Pose.y is higher, then stop
 
 ![](./Images/3_Turtlesim/01_move_turtle.png)
 
@@ -95,6 +89,18 @@ roslaunch turtlesim_tutorial move_distance.launch
 ![](./Images/3_Turtlesim/02_turtlesim_move_dist1.png)
 ![](./Images/3_Turtlesim/03_turtlesim_move_dist2.png)
 
+### **Proposed Exercise: Move turtlesim within a predefined square room**
+Create a new "move_inside_room.py" node, modifying the "move_distance.py" node to:
+- Define a square room limits in X and Y
+- Move with a generic twist vector
+- Subscribes to "/turtle1/Pose" topic to read the POSE message
+    - if the Pose.x and Pose.y is inside the X and Y limits, publish linear and angular speed
+    - if the Pose.x or Pose.y is outside the X and Y limits, then stop
+
+### **Proposed Exercise: Move move during time interval with turtlesim**
+Create a new "move_time.py" node, modifying the "move_distance.py" node to:
+- Move with a generic twist vector
+- during a time interval
 
 ### **Exercise: Go to target point with turtlesim**
 Develop a ROS node to perform the following functionalities.
@@ -146,8 +152,3 @@ The objective is to reach the desired position with the proper orientation also.
 Create a new "go2pose.py" node, modifying the "go2point.py" node to:
 - reach first the position 
 - and later the orientation
-
-### **Proposed Exercise: Move move during time interval with turtlesim**
-Create a new "move_time.py" node, modifying the "move_distance.py" node to:
-- Move with a generic twist vector
-- during a time interval
