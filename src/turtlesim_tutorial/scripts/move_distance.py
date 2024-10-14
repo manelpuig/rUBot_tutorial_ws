@@ -28,7 +28,7 @@ def move_turtle(lin_vel,ang_vel,distance):
         vel.angular.z = ang_vel
  
         if(robot_x >= distance or robot_y >= distance):
-            rospy.loginfo("Robot Reached destination")
+            rospy.loginfo("Robot hits a wall")
             rospy.logwarn("Stopping robot")
             break
         pub.publish(vel)

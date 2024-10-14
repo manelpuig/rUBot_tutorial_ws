@@ -102,6 +102,24 @@ Create a new "move_time.py" node, modifying the "move_distance.py" node to:
 - Move with a generic twist vector
 - during a time interval
 
+Useful indications:
+- use the structure:
+````python
+def move_rubot(lin_velx,ang_vel,time_duration):
+    ...
+    time_begin = rospy.Time.now()
+    while ...:
+        if (duration_s <= time_duration):
+            rospy.loginfo("Robot running")
+            ...
+        else:
+            rospy.logwarn("Stopping robot")
+            ...
+        time_end = rospy.Time.now()
+        rospy.loginfo("Time_end = " + str(time_end))
+        duration = time_end - time_begin
+        duration_s = duration.to_sec()
+````
 ### **Exercise: Go to target point with turtlesim**
 Develop a ROS node to perform the following functionalities.
 - Specify a target point (x,y) with a tolerance for turtlesim to move
