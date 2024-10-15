@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <node pkg="ros_basics" type="talker.py" name="talker"/>
+    <node pkg="ros_basics" type="listener.py" name="listener" output="screen" />
+</launch>

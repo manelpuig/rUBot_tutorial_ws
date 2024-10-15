@@ -1,4 +1,4 @@
-# ROS Tutorial
+# ROS Tutorial2
 
 This tutorial has been extracted from the following references:
 - http://wiki.ros.org/ROS/Tutorials
@@ -16,36 +16,35 @@ https://bitbucket.org/theconstructcore/workspace/projects/
 
 **Robot Operating System (ROS)** is an open source software environment used worldwide to program in robotics. 
 
-Its development started at **Willow Garage**, a technology incubator and robotics research laboratory in Stanford University. 
-- Its origin dates back to several projects at Stanford University from the mid-2000s, where researchers found themselves reinventing the wheel every time they had to build the software for each project. 
+Its development started at **Willow Garage**, a technology incubator and robotics research laboratory in Stanford University.  
 - In **2007**, Willow Garage **starts ROS environment development**. The main goal was to **reuse existing code** and make it possible to **prototype new robot designs quickly**, focusing on high-level functionality and minimizing the need for editing code.
 - ROS is useful for **applications where different devices have to talk to each other** in order to create a flexible and scalable environment.
-- A **ROS system** is comprised of a number of independent **nodes**, each of which **communicates** with the other nodes using a **publish/subscribe messaging model**. For example, a particular sensor’s driver might be implemented as a node, which publishes sensor data in a stream of messages. These messages could be consumed by any number of other nodes (loggers, and also higher-level systems such as guidance, pathfinding, etc.)
+- A **ROS system** is comprised of a number of independent **nodes**, each of which **communicates** with the other nodes using a **publish/subscribe messaging model**. For example, a particular sensor’s driver might be implemented as a node, which publishes sensor data in a stream of messages. These messages could be consumed by any number of other nodes (loggers, and also higher-level systems such as robot navigation node, robot localization node, etc.)
 - Note that **nodes in ROS** do not have to be on the same system (multiple computers) or even of the same architecture! You **could have a Arduino publishing messages, a laptop subscribing to them, and an Android phone publishing messages to drive a motor or switch a light**. This makes ROS really flexible and adaptable to the needs of the user. 
 - **ROS is also open source, maintained by many people**.
 
 ## **2. ROS General Concepts**
 
 Let’s look at the **ROS system from a very high level view**:
-
-- ROS starts with the **ROS Master**. The Master allows all other ROS pieces of software **(Nodes) to find and talk to each other**. We can simply tell Node 1 to send messages to Node 2.
+- First of all we structure a large program into small pieces of code. These pieces of code are called **"nodes"**.
+- ROS starts with the **ROS Master** node. The Master allows all other ROS **Nodes to find and talk to each other**. 
 
 ![](./Images/2_Tutorial/01_ros_nodes.png)
 
 - The **communication is ensured by publishing and subscribing messages to Topics**.
 
 - **In our example**, we have:
-    - a **Camera Node**, that communicates with the camera to obtain images, 
-    - an **Image Processing Node**, that process image data, 
-    - and an **Image Display Node** that displays images on a laptop screen. 
+    - a **Camera Node**, communicates with the camera to obtain images, 
+    - an **Image Processing Node**, process image data, 
+    - and an **Image Display Node** displays images on a laptop screen. 
 
 - To start with, all **Nodes have registered with the Master**. Think of the Master as a lookup table where all the nodes go to find where exactly to send messages.
 
 ![](./Images/2_Tutorial/02_ros_nodes_camera.png)
 
 - When **registering with the ROS Master**:
-    - the **Camera Node can Publish the received Images in a Topic called /image_data**
-    - Both of the **other Nodes can Subscribe to the Topic /image_data to read the images**.
+    - the **Camera Node can Publish the received Images as a Message in a Topic called /image_data**
+    - Both of the **other Nodes can Subscribe to the Topic /image_data to read the Message with the images of the Camera**.
 
 ![](./Images/2_Tutorial/03_ros_nodes_camera2.png)
 
@@ -145,7 +144,7 @@ For this first course in ROS, all the needed packages are already created.
 
 The procedure followed to create a package, its syntax and all the information is described in: http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29
 
-The needed steps to create a "**ros_basics**" package are:
+We summarise here the needed steps to create a "**ros_basics**" package:
 ```shell
 cd /home/rUBot_tutorial_ws/src
 catkin_create_pkg ros_basics std_msgs rospy
@@ -160,7 +159,7 @@ The information could be obtained in: https://wiki.ros.org/ROS/Tutorials/Writing
 
 Let's see it with some exemples:
 
-## **Talker-Listener exemple**
+### **Talker-Listener exemple**
 
 In this "talker-listener" exemple, we will show first graphically a "talker" and "listener" nodes, a "chatter" topic and the String type messages created for communication purposes:
 
@@ -219,91 +218,52 @@ if __name__ == '__main__':
     listener()
 ```
 To **execute** this exemple:
-- Open 2 new terminals and execute one node in each terminal:
+- Open 3 new terminals and execute one node in each terminal:
 ```shell
+roscore
 rosrun ros_basics talker.py
 rosrun ros_basics listener.py
 ```
 
 
-### **Exercise: Doubled**
-Create a "doubler" node that:
-- subscribes to a /number topic
-- calculates the double of the number read in /number topic
-- publishes the result in /doubled topic
-
-![](./Images/2_PubSub_2.png)
-The python code is represented in "doubler.py"
-```python
-#!/usr/bin/env python3
-import rospy
-from std_msgs.msg import Int32
-
-def callback(msg):
-    doubled = Int32()
-    doubled.data = msg.data * 2
-    pub.publish(doubled)
-
-rospy.init_node('doubler')
-sub = rospy.Subscriber('number', Int32, callback)
-pub = rospy.Publisher('doubled', Int32, queue_size=10)
-rospy.spin()
-```
-Carefull!:
-Be sure that the python editor has "End of Line sequence" selected to LF (right-bottom section in VS Code)
-
-To verify the program, we have to publish a number in /number topic and subscibe to the /doubled topic using different terminals:
-```shell
-roscore
-rosrun ros_basics doubler.py
-rostopic echo /doubled
-rostopic pub /number std_msgs/Int32 2
-rqt_graph
-```
-With ROS_windows you need to create a "counter.launch" file to properly run the application:
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<launch>
-    <node pkg="ros_basics" type="doubler.py" name="doubler" output="screen" />
-</launch>
-```
-Type:
-```shell
-roslaunch ros_basics doubler.launch
-rostopic echo /doubled
-rostopic pub /number std_msgs/Int32 2
-rqt_graph
-```
-![](./Images/03_Doubled1.png)
-![](./Images/03_Doubled2.png)
-
-### **Exercise: Counter**
-In this exercise, we develop python scripts to perform the following functionalities.
-- Publish a number every 1s
-- Read this number, adds with the previous one and publishes the result
+### **Counter exemple**
+In this exemple, we will create 2 nodes to perform the following functionalities:
+- The first node Publish a number every 1s
+- The second node Read this number, add with the previous one and publish the result
 
 Graphically is represented by:
-![](./Images/2_PubSub_3.png)
+![](./Images/2_Tutorial/13_PubSub_3.png)
 
-Create in  the "script" folder the python file "publisher_num.py" for the Publiser:
+Create in  the "script" folder the python file "number_publisher.py" for the **Publiser node**:
 ```python
 #!/usr/bin/env python3
 import rospy
 from std_msgs.msg import Int64
 
-rospy.init_node("number_publisher", anonymous=True)
-pub = rospy.Publisher("/number", Int64, queue_size=10)
-rate = rospy.Rate(1)
+def number_publisher():
+    rospy.init_node("number_publisher", anonymous=True)
+    pub = rospy.Publisher("/number", Int64, queue_size=10)
+    rate = rospy.Rate(1)
 
-while not rospy.is_shutdown():
-	msg = Int64()
-	msg.data = 2
-	pub.publish(msg)
-	rate.sleep()
+    while not rospy.is_shutdown():
+        msg = Int64()
+        msg.data = 2
+        pub.publish(msg)
+        rate.sleep()
+
+if __name__ == '__main__':
+    try:
+        number_publisher()
+    except rospy.ROSInterruptException:
+        pass
 ```
-Do not forget to make the file executable: chmod +x Publisher_num.py
+Do not forget to make the file executable: 
+```shell
+cd ros_basics/scripts
+chmod +x number_publisher.py
+```
 
-In "script" folder create the python file "pubsub_counter.py" for the Publiser/Subscriber:
+In "script" folder create the python file "number_counter.py" for the **Publiser/Subscriber node**:
 ```python
 #!/usr/bin/env python3
 import rospy
@@ -319,13 +279,20 @@ def callback_number(msg):
 	pub.publish(new_msg)
 	rospy.loginfo("I Publish the counter value: %s", counter)
 
-rospy.init_node('number_counter')
-pub = rospy.Publisher("/number_count", Int64, queue_size=10)
-sub = rospy.Subscriber("/number", Int64, callback_number)
-rospy.spin()
+def number_counter():
+    rospy.init_node('number_counter')
+    pub = rospy.Publisher("/number_count", Int64, queue_size=10)
+    sub = rospy.Subscriber("/number", Int64, callback_number)
+    rospy.spin()
+
+if __name__ == '__main__':
+    number_counter()
 ```
 Do not forget to make the file executable: 
-- chmod +x pubsub_counter.py
+```shell
+cd ros_basics/scripts
+chmod +x number_counter.py
+```
 
 These python scripts can be adapted to the desired control functions.
 
@@ -334,27 +301,29 @@ To properly run the ROS application, create a launch folder containing the "coun
 <?xml version="1.0" encoding="UTF-8"?>
 
 <launch>
-    <node pkg="ros_basics" type="publisher_num.py" name="number_publisher"/>
-    <node pkg="ros_basics" type="pubsub_counter.py" name="number_counter" output="screen" />
+    <node pkg="ros_basics" type="number_publisher.py" name="number_publisher"/>
+    <node pkg="ros_basics" type="number_counter.py" name="number_counter" output="screen" />
 </launch>
 ```
 To launch the exercise, type:
 ```shell
+cd rUBot_tutorial_ws
 roslaunch ros_basics counter.launch
 rqt_graph
 ```
-![](./Images/2_PubSub_4.png)
-![](./Images/2_counter2.png)
+![](./Images/2_Tutorial/14_PubSub_4.png)
+![](./Images/2_Tutorial/15_counter2.png)
 
-### **Exercise**
+### **Activity 1: ROS Ping-Pong**
 Let's program 2 ping-pong nodes according to this graph, with the functionality:
 - ping_node publish a word every 1s
-- if this word is "Ping", pong_node that is subscribing the ping topic answers "Pong" in other case answers "Failed!"
+- pong_node that is subscribing the ping topic
+- if ping-node publish "Ping" then pong-node answers "Pong" in other case answers "Failed!"
 
-![](./Images/2_ping_pong.png)
+![](./Images/2_Tutorial/16_ping_pong.png)
 
 To verify the ping-pong program, type:
 ```shell
 roslaunch ros_basics ping_pong.launch
 ```
-![](./Images/2_ping_pong_out.png)
+![](./Images/2_Tutorial/17_ping_pong_out.png)
