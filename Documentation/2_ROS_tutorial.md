@@ -151,15 +151,12 @@ catkin_create_pkg ros_basics std_msgs rospy
 cd /home/rUBot_tutorial_ws
 catkin_make
 ```
-### **4.1. Create new ROS Publishers and Subscribers nodes**
+
+### **Talker-Listener exemple**
 
 In order to generate a node to Publish and/or Subscribe in a topic/s, we can create a python file in script folder in "ros_basics" package. 
 
 The information could be obtained in: https://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29
-
-Let's see it with some exemples:
-
-### **Talker-Listener exemple**
 
 In this "talker-listener" exemple, we will show first graphically a "talker" and "listener" nodes, a "chatter" topic and the String type messages created for communication purposes:
 

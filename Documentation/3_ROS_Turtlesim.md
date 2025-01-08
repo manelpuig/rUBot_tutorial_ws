@@ -97,7 +97,7 @@ Create a new "move_inside_room.py" node, modifying the "move_distance.py" node t
     - if the Pose.x and Pose.y is inside the X and Y limits, publish linear and angular speed
     - if the Pose.x or Pose.y is outside the X and Y limits, then stop
 
-### **Proposed Exercise: Move move during time interval with turtlesim**
+### **Activity: Move turtlesim during time interval**
 Create a new "move_time.py" node, modifying the "move_distance.py" node to:
 - Move with a generic twist vector
 - during a time interval
@@ -163,7 +163,7 @@ roslaunch turtlesim_tutorial go2point.launch
 ![](./Images/3_Turtlesim/06_turtlesim_go2point1.png)
 
 
-### **Activity 2: ROS turtlesim go2pose**
+### **Activity: ROS turtlesim go2pose**
 
 The objective is to reach the desired position with the proper orientation also.
 
