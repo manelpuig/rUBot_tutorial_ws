@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <node pkg="turtlesim_tutorial" type="move_turtle.py" name="move_turtle"/>
     <node pkg="turtlesim" type="turtlesim_node" name="turtlesim_node" output="screen"/>
+    <node pkg="turtlesim_tutorial" type="control.py" name="move_turtle"/>
 </launch>

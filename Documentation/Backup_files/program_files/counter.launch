@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<launch>
-    <node pkg="ros_basics" type="number_publisher.py" name="number_publisher"/>
-    <node pkg="ros_basics" type="number_counter.py" name="number_counter" output="screen" />
-</launch>
