@@ -8,8 +8,8 @@ robot_x = 0
 robot_y = 0
 
 def pose_callback(pose):
-	global robot_x, robot_y
-	robot_x = pose.x
+    global robot_x, robot_y
+    robot_x = pose.x
     robot_y = pose.y
     rospy.loginfo("Robot X = %f\t Robot Y = %f\n",pose.x, pose.y)
 
